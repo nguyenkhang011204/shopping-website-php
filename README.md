@@ -15,5 +15,5 @@
 
 * PHP
 * MySQL
-* HTML, CSS
+* HTML, CSS, JavaScript
 * XAMPP
