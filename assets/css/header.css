@@ -1,0 +1,114 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+.header {
+    background: #d9d9d9;
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGO */
+.logo img {
+    height: 100px; 
+}
+
+/* SEARCH */
+.search-box form {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 450px;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    background: #f4a62a;
+    color: black;
+}
+
+.search-input {
+    position: relative;
+    width: 450px;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* chừa chỗ bên phải cho icon */
+    border: none;
+    outline: none;
+    background: #f4a62a;
+    color: black;
+    border-radius: 3px;   
+}
+
+.search-input input::placeholder {
+    color: rgb(97, 84, 84);
+}
+
+.search-input button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgb(97, 84, 84);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-input input:hover {
+   background-color: white;
+   transition: all 0.3s ease
+}
+
+.search-input input:hover {
+   background-color: white;
+   transition: all 0.3s ease
+}
+
+.search-input input:focus {
+    background-color: white;
+}
+
+/* ICONS */
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+.header-icons a {
+    font-size: 22px;
+    color: black;
+    margin-left: 50px;
+    position: relative;
+    text-decoration: none;
+}
+
+/* Cart number */
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #f4a62a;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
