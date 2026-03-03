@@ -11,7 +11,7 @@
     <?php include_once('includes/navbar.php'); ?>
 
     <main class="content">
-        <!-- Nội dung trang -->
+        <h1>HELLO WORLD</h1>
     </main>
 
 
