@@ -14,13 +14,27 @@
             <li class="dropdown">
                 <a href="#">SẢN PHẨM ▾</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Áo</a></li>
-                    <li><a href="#">Quần</a></li>
-                    <li><a href="#">Phụ kiện</a></li>
+                    <li><a href="">SẢN PHẨM MỚI</a></li>
+                    <li><a href="#">SẢN PHẨM NỔI BẬT</a></li>
+                    <li><a href="#">SẢN PHẨM BÁN CHẠY</a></li>
                 </ul>
             </li>
-            <li><a href="#">NAM</a></li>
-            <li><a href="#">NỮ</a></li>
+            <li class="dropdown">
+                <a href="#">NAM ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">ÁO</a></li>
+                    <li><a href="#">QUẦN</a></li>
+                    <li><a href="#">GIÀY</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">NỮ ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">ÁO</a></li>
+                    <li><a href="#">QUẦN</a></li>
+                    <li><a href="#">GIÀY</a></li>
+                </ul>
+            </li>
             <li><a href="#">VỀ CHÚNG TÔI</a></li>
             <li><a href="#">ĐƠN HÀNG</a></li>
         </ul>
