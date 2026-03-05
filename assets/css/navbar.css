@@ -4,12 +4,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 50px;
+    gap: 0px 50px;
+    display: flex;
+    
 }
 
 .navbar ul li {
@@ -45,32 +51,195 @@
     width: 100%;
 }
 
-/* Dropdown */
 .dropdown-menu {
     position: absolute;
-    top: 35px;
+    top: 100%;
     left: 0;
-    background: white;
+    background: #e6e6e6;
     list-style: none;
-    width: 160px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-width: 220px;
+
+    padding: 0;   /* giảm khoảng đệm tổng */
+    margin: 0;
+
+    border-radius: 0;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: 0.3s ease;
+    transition: all 0.25s ease;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* đảm bảo không bị giãn */
 }
 
 .dropdown-menu li {
-    padding: 10px 15px;
+    padding: 18px 20px; /* cao hơn giống hình */
+    font-size: 18px;
+    text-transform: uppercase; /* in hoa */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .dropdown-menu li:hover {
-    background-color: #f4a62a;
+    background-color: #d5d5d5; /* hover xám đậm hơn */
 }
 
+/* Hiện dropdown */
 .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
+
+
+
+/*--------ẨN KHÁC-------------*/
+.tablet-only {
+    display: none;
+}
+
+/*ON TABLET*/
+@media(max-width: 1024PX) {
+    .hide-on-tablet {
+        display: none;
+    }
+
+    .tablet-only {
+        display: block;
+    }
+}
+
+
+/*--------MOBILE-------------*/
+.nav-mobile {
+    display: none;
+}
+
+.nav-links {
+    display: none;
+}
+
+.search-box-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        position: fixed;
+    }
+
+    /* Top bar */
+    .nav-mobile {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        justify-content: space-between;
+        gap: 200px;
+        position: relative;
+        width: 100%;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1500;
+    }
+
+    .menu-toggle,
+    .cart {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Ẩn menu ngang */
+    .nav-links {
+        position: fixed;
+        top: 44px;
+        left: -100%;
+        width: 220px; /* nên cố định thay vì auto */
+        height: calc(100vh - 60px);
+        background: #dfa241;
+        flex-direction: column;
+        transition: 0.3s ease;
+        gap: 0;
+        z-index: 1000;
+    }
+
+    .nav-links li {
+        padding: 10px 15px;
+    }
+
+    .nav-links > li {
+        width: fit-content;   
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* Dropdown mobile */
+    .dropdown-menu {
+        position: absolute;
+        display: none;
+        background: #ffd27a;
+        box-shadow: none;
+        top: 0;
+        left: 100%;
+        z-index: 2000;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    /* SEARCH */
+
+    .search-box-mobile{
+        width: 100%;
+        display:flex;
+        margin:60px 0 0;
+    }
+
+    .search-box-mobile input{
+        flex:1;
+        padding:10px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        border:none;
+        outline:none;
+        background:#ccc;
+        color:#333;
+        border-radius:4px 0 0 4px;
+    }
+
+    .search-box-mobile input::placeholder{
+        color:#555;
+    }
+
+    .search-box-mobile input:hover {
+        background: white;
+        transition: background 0.3s ease;
+    }
+
+    .search-box-mobile input:focus {
+        background: white;
+    }
+
+    .search-box-mobile button{
+        background:#ccc;
+        border:none;
+        padding:10px 15px;
+
+        cursor:pointer;
+
+        border-radius:0 4px 4px 0;
+    }
+}
+

@@ -1,56 +1,97 @@
-.footer {
-    margin-top: 50px;
+.footer{
+    background:#222;
+    color:#eee;
+    margin-top:50px;
 }
 
-/* Footer Top */
-.footer-top {
-    background: #000;
-    color: #fff;
-    padding: 50px 0;
-    justify-content: center;
+/* container */
+.footer-wrapper{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    padding:40px 20px;
 }
 
-.footer-wrapper {
-    display: flex;
-    justify-content: center;
-    max-width: 1200px;
+/* từng cột */
+.footer-col{
+    flex:1;
 }
 
-.container {
-    width: 1200px;
-    margin: 0 auto;
+/* tiêu đề */
+.footer-col h3{
+    margin-bottom:15px;
+    font-size:18px;
 }
 
-.footer-col {
-    width: 30%;
+/* text */
+.footer-col p{
+    margin:8px 0;
+    font-size:14px;
+    color:#ccc;
 }
 
-.footer-col h3 {
-    margin-bottom: 20px;
-    font-size: 18px;
+/* icon social */
+.social-icons{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
 }
 
-.footer-col p {
-    margin-bottom: 8px;
-    font-size: 14px;
+.social-icons a{
+    width:35px;
+    height:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:black;
+    color:white;
+    transition:0.3s;
 }
 
-.social-icons a {
-    display: inline-block;
-    margin-right: 15px;
-    font-size: 20px;
-    color: #fff;
-    transition: 0.3s;
+.social-icons a:hover{
+    background:#f4a62a;
 }
 
-.social-icons a:hover {
-    color: #f4a62a;
-}
-
-/* Footer Bottom */
-.footer-bottom {
-    background: #f4a62a;
-    text-align: center;
-    padding: 12px 0;
+/* bottom */
+.footer-bottom{
+    text-align:center;
+    padding:15px;
+    background:#f4a62a;
+    font-size:18px;
     font-weight: bold;
+    color: black;
+}
+
+
+@media (max-width:1024px){
+
+    .footer-wrapper{
+        flex-wrap:wrap;
+    }
+
+    .footer-col{
+        flex:0 0 45%;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .footer-wrapper{
+        flex-direction:column;
+        gap:30px;
+        text-align:center;
+    }
+
+    .social-icons{
+        justify-content:center;
+    }
+
+    .footer-col{
+        flex:1;
+    }
+
 }
