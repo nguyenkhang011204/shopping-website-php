@@ -1,0 +1,173 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: block;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.content {
+    flex: 1;
+}
+
+/*-----TIÊU ĐỀ VÀ SẮP XẾP-----*/
+
+.product-header{
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.product-header-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-header h2{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sort{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort select{
+    padding: 5px 10px;
+    border: 1px solid #f5a623;
+}
+
+/* Thanh line */
+
+.line{
+    position: relative;
+    margin-top: 15px;
+    border-bottom: 2px solid orange;
+}
+
+.line::before,
+.line::after{
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: orange;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.line::before{
+    left: 0;
+}
+
+.line::after{
+    right: 0;
+}
+
+/*----------Display product----------*/
+.hot-products_header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.new-products_header {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.product-item {
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product-item h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0 5px;
+}
+
+.price {
+    color: red;
+    font-weight: bold;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet nhỏ */
+@media (max-width: 768px) {
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*-----PHÂN TRNAG-----*/
+.pagination{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.page-numbers{
+    display: flex;
+    gap: 10px;
+}
+
+.page-numbers a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    background: #e5e5e5;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.page-numbers a.active{
+    background: #444;
+    color: white;
+}
+
+.next-page a,
+.previous-page a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
