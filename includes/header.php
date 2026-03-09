@@ -9,34 +9,32 @@
 </head>
 <body>
     <header class="header">
-        <div class="container header-wrapper">
+        <div class="header-container">
+
             <!-- Logo -->
             <div class="logo">
-                <a href="/shopping-website-php/index.php"><img src="/shopping-website-php/assets/images/logo.png" alt="HKT Logo"></a>
+                <img src="/shopping-website-php/assets/images/logo.png" alt="logo">
             </div>
 
             <!-- Search -->
             <div class="search-box">
-                <form action="" method="GET">
-                    <div class="search-input">
-                        <input type="text" name="keyword" placeholder="Tìm kiếm ...">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </form>
+                <input type="text" placeholder="Tìm kiếm ...">
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
 
             <!-- Icons -->
             <div class="header-icons">
-                <a href="#"><i class="fa fa-user"></i></a>
+                <a href="#" class="user"><i class="fa-solid fa-user"></i></a>
 
                 <a href="#" class="cart">
-                    <i class="fa fa-shopping-bag"></i>
+                    <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count">0</span>
                 </a>
             </div>
+
         </div>
     </header>
-</body>
+</body> 
 </html>
