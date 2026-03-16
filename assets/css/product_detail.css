@@ -1,0 +1,123 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: block;
+    flex-direction: column;
+    justify-content: flex-start; /* 👈 sửa lại */
+}
+
+.content {
+    flex: 1;
+}
+
+.product-container {
+    width:1000px;
+    margin:auto;
+}
+/*-----PRODUCT-DETAIL-----*/
+.product-detail{
+    display:flex;
+    gap:40px;
+    background:white;
+    padding:30px;
+    justify-content: center;
+}
+
+/*-----PRODUCT-GALLERY-----*/
+.product-gallery {
+    width: 50%;
+}
+
+#main-image {
+    width: 90%;
+}
+
+.thumb-list {
+    display:flex;
+}
+
+.thumb-list img {
+    width: 30%;
+    border: 2px solid orange;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+.thumb-list img:hover {
+    border: 2px solid black;
+    transition: border 0.3s ease;
+}
+
+/*-----PRODUCT-INFO-----*/
+.price {
+    color: red;
+}
+
+.line {
+    content:"";
+    width: 100%;
+    border-bottom: 1px solid orange;
+    margin-bottom: 20px;
+}
+
+.title-size, .title-count {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.size, .count{
+    width:200px;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:10px;
+    border: 1px solid orange;
+}
+
+.btn-group {
+    display: flex;
+    width: 100%;
+}
+
+.add-cart {
+    height: 50px;
+    width: 100px;
+    margin-top: 20px;
+    margin-right: 20px;
+    background-color: orange; 
+    border: none;
+    font-size: 20px; 
+    cursor: pointer;
+}
+
+.add-cart:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;   
+}
+
+.buy {
+    height: 50px;
+    width: 150px;
+    margin-top: 20px;
+    margin-right: 20px;
+    background-color: orange; 
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buy:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+
+
+
+
+
