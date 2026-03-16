@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,8 @@
                 <h2>TẤT CẢ SẢN PHẨM</h2>
 
                 <div class="sort">
-                    <label>SẮP XẾP THEO:</label>
+                    <label class="hide-on-phone">SẮP XẾP THEO:</label>
+                    <label><i class="fa-solid fa-filter"></i></label>
                     <select>
                         <option>Mặc định</option>
                         <option>Giá thấp → cao</option>
@@ -33,75 +34,111 @@
         <section class="product-list">    
     
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
             <div class="product-item">
-                <img src="/shopping-website-php/upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
+                <a href="product_detail.php">
+                    <img src="/shopping-website-php/upload/Ao321.png" alt="">
+                    <h3>Áo thể thao HKT - Sport T-Shirt</h3>
+                    <p class="price">379.000đ</p>
+                </a>
+                
             </div>
 
         </section>
@@ -109,7 +146,8 @@
         <div class="pagination">
 
             <div class="previous-page">
-                <a href="#"><i class="fa-solid fa-arrow-left"></i> TRANG TRƯỚC</a>
+                <a href="#"><i class="fa-solid fa-arrow-left"></i> <span class="hide-on-phone">TRANG TRƯỚC</span></a>
+                
             </div>
 
             <div class="page-numbers">
@@ -121,7 +159,7 @@
             </div>
 
             <div class="next-page">
-                <a href="#">TRANG SAU <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#"><span class="hide-on-phone">TRANG SAU</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
         </div>

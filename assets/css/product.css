@@ -94,6 +94,10 @@ body {
     text-align: center;
 }
 
+.product-item a{
+    text-decoration: none;
+}
+
 .product-item img {
     width: 100%;
     height: auto;
@@ -102,8 +106,9 @@ body {
 
 .product-item h3 {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     margin: 10px 0 5px;
+    color: black;
 }
 
 .price {
@@ -111,17 +116,31 @@ body {
     font-weight: bold;
 }
 
+.hide-on-desktop {
+        display: none;
+}
+
 /* TABLET */
 @media (max-width: 1024px) {
     .product-list {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    
 }
 
 /* Tablet nhỏ */
 @media (max-width: 768px) {
+    .hide-on-phone {
+        display: none;
+    }
+    
     .product-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hide-on-desktop {
+        display: block;
     }
 }
 
