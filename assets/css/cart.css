@@ -1,0 +1,151 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.page{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+/*-----Cart-Container------*/
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.cart-title {
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+/*-----Cart-Empty------*/
+.cart-empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    color: #333;
+}
+
+.continue-shopping {
+    margin-top: 10px;
+    color: orange;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.continue-shopping:hover {
+    text-decoration: underline;
+}
+
+/*============================================================================*/
+
+/*-----Cart-Shopping-----*/
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-spacing: 20px 10px;
+    
+}
+
+.cart-table th{
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999
+}
+
+.cart-item {
+    border-bottom: 1px solid black;
+}
+
+.cart-item td {
+    padding: 20px 0;
+    align-items: center;
+    gap: 15px;
+}
+
+/*-----Product-----*/
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+}
+
+.product-info span{
+    white-space: normal;
+    word-break: break-word;
+}
+
+.product-info img {
+    width: 60px;
+}
+
+/*-----Quantity-----*/
+.quantity {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+/*-----Price and Remove-----*/
+.remove {
+    cursor: pointer;
+}
+
+/*-----Total-----*/
+.cart-total {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.total-price {
+    color: red;
+    margin-left: 10px;
+}
+
+/*-----Actions-----*/
+.cart-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-group button {
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-btn {
+    background: black;
+    color: white;
+    margin-right: 10px;
+}
+
+.checkout-btn {
+    background: black;
+    color: white
+}
+
+.update-btn:hover,
+.checkout-btn:hover {
+    color: orange;
+    transition: color 0.3s ease;
+}
+
+
+
