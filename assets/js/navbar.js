@@ -15,6 +15,5 @@ dropdowns.forEach(item => {
             e.preventDefault();
             this.parentElement.classList.toggle('active');
         }
-
     });
 });

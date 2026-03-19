@@ -66,3 +66,5 @@
         <i class="fa-solid fa-magnifying-glass"></i>
     </button>
 </div>
+
+<script src="../assets/js/navbar.js"></script>

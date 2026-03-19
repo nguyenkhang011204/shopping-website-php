@@ -3,7 +3,7 @@
 
         <!-- Logo -->
         <div class="logo">
-            <img src="assets/images/logo.png" alt="logo">
+            <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="logo">
         </div>
 
         <!-- Search -->

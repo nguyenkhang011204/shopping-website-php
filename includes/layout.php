@@ -40,10 +40,10 @@
 </head>
 <body>
     <!-- Header Component -->
-    <?php include_once(isset($base_path) ? $base_path : '' . 'includes/header.php'); ?>
+    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/header.php'); ?>
     
     <!-- Navbar Component -->
-    <?php include_once(isset($base_path) ? $base_path : '' . 'includes/navbar.php'); ?>
+    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/navbar.php'); ?>
     
     <!-- Main Content -->
     <main class="content">
@@ -56,7 +56,7 @@
     </main>
     
     <!-- Footer Component -->
-    <?php include_once(isset($base_path) ? $base_path : '' . 'includes/footer.php'); ?>
+    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/footer.php'); ?>
     
     <!-- Page-specific Scripts -->
     <?php if(isset($page_scripts)): ?>
@@ -65,4 +65,5 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </body>
+<script src="<?= $base_path . 'assets/js/navbar.js' ?>"></script>
 </html>

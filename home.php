@@ -27,9 +27,7 @@ ob_start();
 <div class="new-products_header">
     <p>NEW PRODUCTS</p>
     <h2>SẢN PHẨM MỚI</h2>
-    <div class="line">
-        <img src="assets/images/logo.png" alt="">
-    </div>
+    <div class="line"></div>
 </div>
 
 <section class="product-list">    
@@ -74,9 +72,7 @@ ob_start();
 <div class="hot-products_header">
     <p>HOT PRODUCTS</p>
     <h2>SẢN PHẨM NỔI BẬT</h2>
-    <div class="line">
-        <img src="assets/images/logo.png" alt="">
-    </div>
+    <div class="line"></div>
 </div>
 
 <section class="product-list">    
