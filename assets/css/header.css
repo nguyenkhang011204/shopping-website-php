@@ -82,6 +82,40 @@
     position:relative;
 }
 
+.user-dropdown {
+    position: relative;
+}
+
+.user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 150px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.13);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.user-dropdown:hover .user-dropdown-menu,
+.user-dropdown:focus-within .user-dropdown-menu {
+    display: block;
+}
+
+.user-dropdown-item {
+    display: block;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+.user-dropdown-item:hover {
+    background-color: rgba(242,169,50,0.12);
+    color: #111;
+}
+
 .cart-count{
     position:absolute;
     top:-8px;
