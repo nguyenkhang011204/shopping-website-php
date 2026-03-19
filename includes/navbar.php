@@ -25,12 +25,12 @@
         <!-- Main Menu -->
         <ul class="nav-links">
 
-            <li><a href="#">TRANG CHỦ</a></li>
+            <li><a href="../home.php">TRANG CHỦ</a></li>
 
             <li class="dropdown">
-                <a href="#">SẢN PHẨM ▾</a>
+                <a href="pages/product.php">SẢN PHẨM ▾</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">TẤT CẢ SẢN PHẨM</a></li>
+                    <li><a href="pages/product.php">TẤT CẢ SẢN PHẨM</a></li>
                     <li><a href="#">SẢN PHẨM MỚI</a></li>
                     <li><a href="#">SẢN PHẨM NỔI BẬT</a></li>
                     <li><a href="#">SẢN PHẨM BÁN CHẠY</a></li>
