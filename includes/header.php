@@ -26,7 +26,13 @@
 
             <!-- Icons -->
             <div class="header-icons">
+                <div class="user-dropdown">
                 <a href="#" class="user"><i class="fa-solid fa-user"></i></a>
+                <div class="user-dropdown-menu">
+                    <a href="/pages/signIn.php" class="user-dropdown-item">Đăng nhập</a>
+                    <a href="/pages/signUp.php" class="user-dropdown-item">Đăng ký</a>
+                </div>
+            </div>
 
                 <a href="#" class="cart">
                     <i class="fa-solid fa-bag-shopping"></i>
