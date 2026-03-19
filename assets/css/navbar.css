@@ -7,7 +7,6 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2000;
 }
 
 .navbar ul {
@@ -69,7 +68,6 @@
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.25s ease;
-    z-index: 1000;
 
     display: flex;
     flex-direction: column;
@@ -149,7 +147,6 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 1500;
     }
 
     .menu-toggle,
@@ -169,7 +166,6 @@
         flex-direction: column;
         transition: 0.3s ease;
         gap: 0;
-        z-index: 1000;
     }
 
     .nav-links li {
@@ -192,7 +188,6 @@
         box-shadow: none;
         top: 0;
         left: 100%;
-        z-index: 2000;
     }
 
     .dropdown.active .dropdown-menu {
