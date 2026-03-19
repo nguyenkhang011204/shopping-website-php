@@ -1,26 +1,30 @@
+<?php
+$base_path = isset($base_path) ? $base_path : "";
+?>
+
 <nav class="navbar">
 
     <!-- Mobile Top Bar -->
     <div class="nav-mobile">
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-        <div class="logo"><img src="assets/images/logo.png" alt=""></div>
-        
+        <div class="logo"><img src="<?php echo $base_path; ?>assets/images/logo.png" alt=""></div>
+
         <div class="cart">
             <i class="fa fa-user"></i>
             <i class="fa-solid fa-bag-shopping"></i>
         </div>
     </div>
-    
+
 
     <!-- Main Menu -->
     <ul class="nav-links">
 
-        <li><a href="home.php">TRANG CHỦ</a></li>
+        <li><a href="<?php echo $base_path; ?>home.php">TRANG CHỦ</a></li>
 
         <li class="dropdown">
-            <a href="pages/product.php">SẢN PHẨM ▾</a>
+            <a href="<?php echo $base_path; ?>pages/product.php">SẢN PHẨM ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="pages/product.php">TẤT CẢ SẢN PHẨM</a></li>
+                <li><a href="<?php echo $base_path; ?>pages/product.php">TẤT CẢ SẢN PHẨM</a></li>
                 <li><a href="#">SẢN PHẨM MỚI</a></li>
                 <li><a href="#">SẢN PHẨM NỔI BẬT</a></li>
                 <li><a href="#">SẢN PHẨM BÁN CHẠY</a></li>
@@ -67,4 +71,4 @@
     </button>
 </div>
 
-<script src="../assets/js/navbar.js"></script>
+<script src="<?php echo $base_path; ?>assets/js/navbar.js"></script>

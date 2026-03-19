@@ -30,7 +30,7 @@ ob_start();
     <div class="line"></div>
 </div>
 
-<section class="product-list">    
+<section class="product-list">
     <?php
     $products = [
         ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
@@ -46,7 +46,7 @@ ob_start();
         ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
         ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
     ];
-    
+
     foreach ($products as $product) {
         echo '<div class="product-item">';
         echo '<a href="pages/product_detail.php">';
@@ -75,7 +75,7 @@ ob_start();
     <div class="line"></div>
 </div>
 
-<section class="product-list">    
+<section class="product-list">
     <?php
     foreach ($products as $product) {
         echo '<div class="product-item">';
