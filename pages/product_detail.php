@@ -19,9 +19,9 @@
                 <div class="product-gallery">
                     <img src="../upload/Ao321.png" alt="" id="main-image">
                     <div class="thumb-list">
-                        <img src="../upload/Ao321.png" alt="">
-                        <img src="../upload/Ao321.png" alt="">
-                        <img src="../upload/Ao321.png" alt="">
+                        <img src="../upload/Ao321.png" alt="" onclick="changeImg(this)">
+                        <img src="../upload/Behind_Ao321.png" alt="" onclick="changeImg(this)">
+                        <img src="../upload/Ao321.png" alt="" onclick="changeImg(this)">
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                    
 
                     <div class="btn-group">
-                        <button class="add-cart"><i class="fa-solid fa-cart-arrow-down"></i></button>
+                        <button class="add-cart"><i class="fa-solid fa-cart-arrow-down"></i> Thêm giỏ hàng</button>
                         <button class="buy">Đặt hàng</button>
                     </div>
                 </div>
@@ -77,8 +77,8 @@
                 </p>
                 
                 <h2>Bảng Size và Tư Vấn Chọn Size</h2>
-                <div style="text-align:center; width: 100%;">
-                    <img src="../assets/images/size.png" alt="">
+                <div style="text-align:center;">
+                    <img src="../assets/images/size.png" alt="" style="width:70%; height:auto;">
                 </div>
                 <p><b>Form rộng:</b> Thoải mái lựa chọn size tùy vào phong cách (vừa vặn hoặc oversize).
                 Tư vấn tận tình: Đội ngũ HKT luôn sẵn sàng hỗ trợ để bạn chọn size chuẩn xác nhất.</p>
