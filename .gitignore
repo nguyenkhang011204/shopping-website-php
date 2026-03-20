@@ -1,0 +1,45 @@
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# PHP
+composer.lock
+vendor/
+.env
+.env.local
+.env.*.local
+
+# Database
+*.sql
+database.sqlite
+database.sqlite3
+
+# Uploads & Temp Files
+upload/
+uploads/
+tmp/
+temp/
+*.tmp
+.cache/
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.directory
+
+# Node (if using npm scripts)
+node_modules/
+npm-debug.log
+package-lock.json
+
+# XAMPP specific (optional)
+/nbproject/private/
