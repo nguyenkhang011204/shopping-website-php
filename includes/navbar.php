@@ -2,23 +2,18 @@
 $base_path = isset($base_path) ? $base_path : "";
 ?>
 
-<nav class="navbar">
+<nav class="header">
 
-    <!-- Mobile Top Bar -->
-    <div class="nav-mobile">
+    <!-- LEFT: Logo (desktop) / Hamburger (mobile) -->
+    <div class="nav-left">
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-        <div class="logo"><img src="<?php echo $base_path; ?>assets/images/logo.png" alt=""></div>
-
-        <div class="cart">
-            <i class="fa fa-user"></i>
-            <i class="fa-solid fa-bag-shopping"></i>
-        </div>
+        <a href="<?php echo $base_path; ?>home.php" class="nav-logo">
+            <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="logo">
+        </a>
     </div>
 
-
-    <!-- Main Menu -->
+    <!-- CENTER: Nav links -->
     <ul class="nav-links">
-
         <li><a href="<?php echo $base_path; ?>home.php">TRANG CHỦ</a></li>
 
         <li class="dropdown">
@@ -52,7 +47,6 @@ $base_path = isset($base_path) ? $base_path : "";
         <li class="hide-on-tablet"><a href="#">VỀ CHÚNG TÔI</a></li>
         <li class="hide-on-tablet"><a href="#">ĐƠN HÀNG</a></li>
 
-        <!-- Tablet Only -->
         <li class="dropdown tablet-only">
             <a href="#">KHÁC ▾</a>
             <ul class="dropdown-menu">
@@ -60,15 +54,35 @@ $base_path = isset($base_path) ? $base_path : "";
                 <li><a href="#">ĐƠN HÀNG</a></li>
             </ul>
         </li>
-
     </ul>
+
+    <!-- RIGHT: User + Cart icons -->
+    <div class="nav-icons">
+        <div class="user-dropdown">
+            <a href="#" class="user"><i class="fa-solid fa-user"></i></a>
+            <div class="user-dropdown-menu">
+                <a href="<?php echo $base_path; ?>pages/signIn.php" class="user-dropdown-item">Đăng nhập</a>
+                <a href="<?php echo $base_path; ?>pages/signUp.php" class="user-dropdown-item">Đăng ký</a>
+            </div>
+        </div>
+        <a href="#" class="cart">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- Mobile: Logo centered (absolute) -->
+    <div class="nav-logo-mobile">
+        <a href="<?php echo $base_path; ?>home.php">
+            <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="logo">
+        </a>
+    </div>
+
 </nav>
 
 <div class="search-box-mobile">
     <input type="text" placeholder="Tìm kiếm ...">
-    <button>
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
+    <button><i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
 
-<script src="<?php echo $base_path; ?>assets/js/navbar.js"></script>
+<script src="<?php echo $base_path; ?>assets/js/header.js"></script>

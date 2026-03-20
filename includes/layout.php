@@ -33,7 +33,6 @@
 
     <!-- Component CSS -->
     <link rel="stylesheet" href="<?php echo isset($base_path) ? $base_path : ''; ?>assets/css/header.css">
-    <link rel="stylesheet" href="<?php echo isset($base_path) ? $base_path : ''; ?>assets/css/navbar.css">
     <link rel="stylesheet" href="<?php echo isset($base_path) ? $base_path : ''; ?>assets/css/footer.css">
 
     <!-- Font Awesome Icons -->
@@ -43,10 +42,8 @@
 </head>
 
 <body>
-    <!-- Header Component -->
-    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/header.php'); ?>
 
-    <!-- Navbar Component -->
+    <!-- Header Component -->
     <?php include_once((isset($base_path) ? $base_path : '') . 'includes/navbar.php'); ?>
 
     <!-- Main Content -->
@@ -69,6 +66,6 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </body>
-<script src="<?= $base_path . 'assets/js/navbar.js' ?>"></script>
+<script src="<?= $base_path . 'assets/js/header.js' ?>"></script>
 
 </html>
