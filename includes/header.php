@@ -7,7 +7,7 @@ $base_path = isset($base_path) ? $base_path : "";
     <!-- LEFT: Logo (desktop) / Hamburger (mobile) -->
     <div class="nav-left">
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-        <a href="<?php echo $base_path; ?>home.php" class="nav-logo">
+        <a href="<?php echo $base_path; ?>home.php" class="nav-logo no-line">
             <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="logo">
         </a>
     </div>
@@ -59,20 +59,20 @@ $base_path = isset($base_path) ? $base_path : "";
     <!-- RIGHT: User + Cart icons -->
     <div class="nav-icons">
         <div class="user-dropdown">
-            <a href="#" class="user"><i class="fa-solid fa-user"></i></a>
+            <a href="#" class="user no-line"><i class="fa-solid fa-user"></i></a>
             <div class="user-dropdown-menu">
                 <a href="<?php echo $base_path; ?>pages/signIn.php" class="user-dropdown-item">Đăng nhập</a>
                 <a href="<?php echo $base_path; ?>pages/signUp.php" class="user-dropdown-item">Đăng ký</a>
             </div>
         </div>
-        <a href="#" class="cart">
+        <a href="#" class="cart no-line">
             <i class="fa-solid fa-bag-shopping"></i>
             <span class="cart-count">0</span>
         </a>
     </div>
 
     <!-- Mobile: Logo centered (absolute) -->
-    <div class="nav-logo-mobile">
+    <div class="nav-logo-mobile no-line">
         <a href="<?php echo $base_path; ?>home.php">
             <img src="<?php echo $base_path; ?>assets/images/logo.png" alt="logo">
         </a>

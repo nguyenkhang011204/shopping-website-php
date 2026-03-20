@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 100px;
   position: relative;
   z-index: 2000;
 }
@@ -25,7 +25,7 @@
 }
 
 .nav-left .nav-logo img {
-  height: 54px;
+  height: 105px;
   display: block;
 }
 
@@ -70,6 +70,9 @@
 }
 .header a:hover::after {
   width: 100%;
+}
+.header .no-line:hover::after {
+  width: 0%;
 }
 
 /* ---- Dropdown ---- */
@@ -225,7 +228,7 @@
     transform: translateX(-50%);
   }
   .nav-logo-mobile img {
-    height: 40px;
+    height: 105px;
   }
 
   /* icons stay in nav-icons on the right — no change needed */
@@ -238,7 +241,7 @@
     position: fixed;
     top: 56px;
     left: -100%;
-    width: 230px;
+    width: 246px;
     height: calc(100vh - 56px);
     background: #dfa241;
     flex-direction: column;
@@ -251,9 +254,24 @@
   }
 
   .nav-links li {
-    padding: 10px 16px;
+    padding: 10px 0px 10px 16px;
     width: 100%;
   }
+
+  .nav-links li a {
+    display: block; /* quan trọng */
+    width: 100%;
+  }
+
+  .nav-links li a::after {
+    width: 0;
+    margin-top: 6px;
+  }
+
+  .nav-links li a:hover::after {
+    width: calc(100% - 20px);
+  }
+
   .nav-links.active {
     left: 0;
   }
@@ -263,24 +281,23 @@
     position: absolute;
     display: none;
     top: 0;
-    left: 100%;
+    left: 94%;
     background: #ffd27a;
     box-shadow: none;
-    opacity: 1;
+    opacity: 0;
     visibility: visible;
-    transform: none;
-    transition: none;
   }
+
   .dropdown.active .dropdown-menu {
     display: block;
   }
   .dropdown:hover .dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
+    display: block;
   }
   .dropdown.active:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
+    transition: opacity 0.3s ease;
   }
 
   /* search bar below fixed navbar */
