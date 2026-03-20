@@ -90,81 +90,22 @@ ob_start();
         <h2>SẢN PHẨM KHÁC</h2>
         <div class="line"></div>
 
-        <section class="product-list">
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-            <div class="product-item">
-                <img src="../upload/Ao321.png" alt="">
-                <h3>Áo thể thao HKT - Sport T-Shirt</h3>
-                <p class="price">379.000đ</p>
-            </div>
-
-        </section>
+        <?php
+        $products = [
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+            ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => '../upload/Ao321.png'],
+        ];
+        include('../includes/product_list.php');
+        ?>
     </div>
 
 </div>

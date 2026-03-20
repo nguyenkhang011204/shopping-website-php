@@ -30,34 +30,23 @@ ob_start();
     <div class="line"></div>
 </div>
 
-<section class="product-list">
-    <?php
-    $products = [
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-        ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ];
-
-    foreach ($products as $product) {
-        echo '<div class="product-item">';
-        echo '<a href="pages/product_detail.php">';
-        echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '">';
-        echo '<h3>' . htmlspecialchars($product['name']) . '</h3>';
-        echo '<p class="price">' . htmlspecialchars($product['price']) . '</p>';
-        echo '</a>';
-        echo '</div>';
-    }
-    ?>
-</section>
+<?php
+$products = [
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
+];
+include('includes/product_list.php');
+?>
 
 <div class="view-more-wrapper">
     <a href="pages/product.php"><button class="view-more-btn">XEM THÊM</button></a>
@@ -75,19 +64,9 @@ ob_start();
     <div class="line"></div>
 </div>
 
-<section class="product-list">
-    <?php
-    foreach ($products as $product) {
-        echo '<div class="product-item">';
-        echo '<a href="pages/product_detail.php">';
-        echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '">';
-        echo '<h3>' . htmlspecialchars($product['name']) . '</h3>';
-        echo '<p class="price">' . htmlspecialchars($product['price']) . '</p>';
-        echo '</a>';
-        echo '</div>';
-    }
-    ?>
-</section>
+<?php
+include('includes/product_list.php');
+?>
 
 <div class="view-more-wrapper">
     <a href="pages/product.php"><button class="view-more-btn">XEM THÊM</button></a>
