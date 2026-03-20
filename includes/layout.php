@@ -44,7 +44,7 @@
 <body>
 
     <!-- Header Component -->
-    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/navbar.php'); ?>
+    <?php include_once((isset($base_path) ? $base_path : '') . 'includes/header.php'); ?>
 
     <!-- Main Content -->
     <main class="content">
