@@ -1,0 +1,64 @@
+@import url("base.css");
+
+.content {
+  margin: 0 auto;
+  width: 400px;
+}
+
+/*-----Sign In-----*/
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.form-signIn {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid orange;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.input-group i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.option a {
+  color: black;
+}
+
+.btn-SignIn {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  width: 50%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+.btn-SignIn:hover {
+  color: orange;
+  transition: color 0.3s ease;
+}
