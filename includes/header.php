@@ -80,9 +80,4 @@ $base_path = isset($base_path) ? $base_path : "";
 
 </nav>
 
-<div class="search-box-mobile">
-    <input type="text" placeholder="Tìm kiếm ...">
-    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-</div>
-
 <script src="<?php echo $base_path; ?>assets/js/header.js"></script>

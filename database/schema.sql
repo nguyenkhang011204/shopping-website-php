@@ -1,0 +1,78 @@
+CREATE DATABASE IF NOT EXISTS hkt_shop CHARACTER SET
+    utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE
+    hkt_shop;
+
+CREATE TABLE users(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    phone VARCHAR(20),
+    role ENUM('customer', 'admin') NOT NULL DEFAULT 'customer',
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE addresses(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    recipient_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    district VARCHAR(100),
+    city VARCHAR(100) NOT NULL,
+    is_default TINYINT(1) NOT NULL DEFAULT 0,
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE orders(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    address_id INT UNSIGNED NOT NULL,
+    STATUS ENUM
+        (
+            'pending',
+            'confirmed',
+            'shipping',
+            'delivered',
+            'cancelled'
+        ) NOT NULL DEFAULT 'pending',
+        total_amount DECIMAL(12, 2) NOT NULL,
+        payment_method ENUM(
+            'cod',
+            'bank_transfer',
+            'momo',
+            'vnpay'
+        ) NOT NULL DEFAULT 'cod',
+        payment_status ENUM('unpaid', 'paid', 'refunded') NOT NULL DEFAULT 'unpaid',
+        note TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE RESTRICT,
+        FOREIGN KEY(address_id) REFERENCES addresses(id) ON DELETE RESTRICT
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE order_items(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    order_id INT UNSIGNED NOT NULL,
+    product_id INT UNSIGNED NOT NULL,
+    quantity INT UNSIGNED NOT NULL,
+    unit_price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO users(
+    email,
+    password_hash,
+    full_name,
+    role,
+    is_active
+)
+VALUES(
+    'admin@hktshop.com',
+    'PASTE_HASH_HERE',
+    'Admin HKT',
+    'admin',
+    1
+);

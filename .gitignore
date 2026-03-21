@@ -15,8 +15,12 @@ vendor/
 .env.local
 .env.*.local
 
-# Database
-*.sql
+# Database dumps (auto-generated exports, not tracked)
+*_backup.sql
+*_dump.sql
+*_export.sql
+
+# SQLite (not used but just in case)
 database.sqlite
 database.sqlite3
 
