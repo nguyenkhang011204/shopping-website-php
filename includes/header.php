@@ -6,12 +6,14 @@ $base_path    = isset($base_path) ? $base_path : "";
 $is_logged_in = isset($_SESSION['user_id']);
 $user_name    = $is_logged_in ? htmlspecialchars($_SESSION['user_name'])  : '';
 $user_email   = $is_logged_in ? htmlspecialchars($_SESSION['user_email']) : '';
-// First letter of name for the avatar circle
 $avatar_letter = $is_logged_in
     ? mb_strtoupper(mb_substr($_SESSION['user_name'], 0, 1, 'UTF-8'), 'UTF-8')
     : '';
-// First word only for the button label
 $first_name = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : '';
+
+// Hide the login button on auth pages
+$current_page = basename($_SERVER['PHP_SELF']);
+$hide_login_btn = in_array($current_page, ['signin.php', 'signup.php']);
 ?>
 
 <nav class="header">
@@ -91,12 +93,12 @@ $first_name = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : ''
                     </li>
 
                     <!-- Menu items -->
-                    <li>
+                    <li class="user-dropdown-li">
                         <a href="<?php echo $base_path; ?>pages/profile.php" class="user-dropdown-item">
                             <i class="fa-regular fa-user"></i> Tài khoản của tôi
                         </a>
                     </li>
-                    <li>
+                    <li class="user-dropdown-li">
                         <a href="<?php echo $base_path; ?>pages/order.php" class="user-dropdown-item">
                             <i class="fa-regular fa-rectangle-list"></i> Đơn hàng của tôi
                         </a>
@@ -104,7 +106,7 @@ $first_name = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : ''
 
                     <li class="user-dropdown-divider"></li>
 
-                    <li>
+                    <li class="user-dropdown-li">
                         <a href="<?php echo $base_path; ?>pages/logout.php" class="user-dropdown-item user-dropdown-logout">
                             <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                         </a>
@@ -116,10 +118,12 @@ $first_name = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : ''
         <?php else: ?>
 
             <!-- ── Guest: Đăng nhập button ── -->
-            <a href="<?php echo $base_path; ?>pages/signin.php" class="btn-login no-line">
-                <i class="fa-regular fa-user"></i>
-                <span>Đăng nhập</span>
-            </a>
+            <?php if (!$hide_login_btn): ?>
+                <a href="<?php echo $base_path; ?>pages/signin.php" class="btn-login no-line">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Đăng nhập</span>
+                </a>
+            <?php endif; ?>
 
         <?php endif; ?>
 

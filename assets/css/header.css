@@ -136,36 +136,43 @@
   align-items: center;
 }
 
-/* ── Guest: Đăng nhập button ── */
+/* ── Guest: Đăng nhập link ── */
 .btn-login {
   display: flex;
   align-items: center;
   gap: 7px;
-  background: #222;
-  color: #fff !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.8px;
-  padding: 9px 18px;
+  background: none;
+  color: #222 !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px;
+  padding: 5px 0;
   white-space: nowrap;
   text-decoration: none;
-  transition:
-    background 0.25s,
-    color 0.25s;
+  transition: color 0.3s;
   line-height: 1;
 }
 
 .btn-login i {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .btn-login:hover {
-  background: #fff;
-  color: #222 !important;
+  color: #fff !important;
 }
 
 .btn-login::after {
-  display: none !important;
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: white;
+  transition: width 0.3s;
+  margin-top: 4px;
+}
+
+.btn-login:hover::after {
+  width: 100%;
 }
 
 /* ── Logged-in: avatar trigger ── */
@@ -177,16 +184,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: none;
+  background: rgba(0, 0, 0, 0.15);
   border: none;
+  border-radius: 999px;
   cursor: pointer;
-  padding: 5px 2px;
+  padding: 5px 12px 5px 5px;
   font-family: inherit;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.user-avatar-btn:hover {
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .user-avatar {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #222;
   color: #f4a62a;
@@ -202,17 +216,17 @@
 .user-avatar-name {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   color: #222;
-  max-width: 90px;
+  max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .user-chevron {
-  font-size: 10px;
-  color: #444;
+  font-size: 9px;
+  color: #333;
   transition: transform 0.25s ease;
 }
 
@@ -223,18 +237,22 @@
 /* ── Dropdown panel ── */
 .user-dropdown-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 12px);
   right: 0;
-  background: var(--nav-dropdown-bg);
+  background: #fff;
   list-style: none;
-  min-width: 220px;
-  padding: 0;
+  width: 260px;
+  padding: 6px 0;
   margin: 0;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
-  transition: all 0.25s ease;
+  transform: translateY(6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
   z-index: 2002;
   overflow: hidden;
 }
@@ -250,17 +268,16 @@
 .user-dropdown-header {
   display: flex;
   flex-direction: column;
-  padding: 14px 20px;
-  background: rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 18px 22px 16px;
+  border-bottom: 1px solid #f0f0f0;
   cursor: default;
   list-style: none;
 }
 
 .udh-name {
   font-size: 14px;
-  font-weight: 600;
-  color: #222;
+  font-weight: 700;
+  color: #111;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -268,42 +285,47 @@
 
 .udh-email {
   font-size: 12px;
-  color: #666;
-  margin-top: 2px;
+  color: #999;
+  margin-top: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Items — same padding/size as .dropdown-menu li */
+/* Items */
+.user-dropdown-li {
+  list-style: none;
+  padding: 2px 8px;
+}
+
 .user-dropdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 20px;
-  color: #222;
-  font-size: 14px;
+  gap: 12px;
+  padding: 11px 14px;
+  color: #333;
+  font-size: 13.5px;
   font-weight: 500;
   text-decoration: none;
-  letter-spacing: 0.3px;
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: background 0.15s;
+  border-radius: 6px;
 }
 
 .user-dropdown-item i {
-  font-size: 14px;
+  font-size: 13px;
   width: 16px;
   text-align: center;
-  color: #555;
+  color: #aaa;
   flex-shrink: 0;
 }
 
 .user-dropdown-item:hover {
-  background: #d5d5d5;
-  color: #222;
+  background: #f7f7f7;
+  color: #111;
 }
 .user-dropdown-item:hover i {
-  color: #222;
+  color: #555;
 }
 .user-dropdown-item::after {
   display: none !important;
@@ -311,21 +333,22 @@
 
 /* Divider */
 .user-dropdown-divider {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 0;
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 4px 0;
   padding: 0;
   list-style: none;
 }
 
 /* Logout */
 .user-dropdown-logout {
-  color: #c0392b !important;
+  color: #e74c3c !important;
 }
 .user-dropdown-logout i {
-  color: #c0392b !important;
+  color: #e74c3c !important;
 }
 .user-dropdown-logout:hover {
-  background: #f0d0ce !important;
+  background: #fff5f5 !important;
 }
 
 /* ---- Visibility helpers ---- */
