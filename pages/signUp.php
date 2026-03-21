@@ -19,8 +19,8 @@ ob_start();
     </div>
 
     <div class="input-group">
-        <i class="fa-solid fa-envelope"></i>
-        <input type="password" placeholder="Email">
+        <i class="fa-solid fa-phone"></i>
+        <input type="number" placeholder="Số điện thoại">
     </div>
 
     <div class="input-group">
@@ -35,7 +35,6 @@ ob_start();
 
     <div class="have-user">
         <a href="#">Đã có tài khoản?</a>
-        <a href="#" style="text-decoration: none; font-weight: bold">Đăng ký</a>
     </div>
 
     <div class="btn-SignUp" type="submit">ĐĂNG KÝ</div>
