@@ -13,7 +13,7 @@
   color: #222;
 }
 
-.form-signIn {
+.form-signin {
   display: flex;
   flex-direction: column;
   padding: 25px;
@@ -58,7 +58,7 @@
     font-size: 20px;
   }
 
-  .form-signIn {
+  .form-signin {
     padding: 20px;
   }
 

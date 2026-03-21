@@ -27,10 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     if (validateForm()) {
-      // All validations passed - submit form
-      console.log("Form is valid, submitting...");
-      // In production, submit via AJAX or allow default submission
-      // form.submit();
+      form.submit();
     }
   });
 
