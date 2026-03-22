@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f1f5f9;
+}
+
+/* MAIN */
+.content {
+  flex: 1;
+  margin-left: 240px;
+  width: 100%;
+  padding: 20px;
+  transition: 0.3s;
+  flex-direction: column;
+}
+
+.content {
+  margin-left: 0;
+}
