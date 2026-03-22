@@ -6,17 +6,16 @@
 
 :root {
   --nav-h: 64px;
-  --nav-bg: #f4a62a; /* orange */
+  --nav-bg: #f4a62a;
   --nav-bg-blur: rgba(244, 166, 42, 0.95);
-  --nav-accent: #111111; /* dark accent for highlights */
-  --nav-text: #111111; /* dark text on orange */
-  --nav-text-dim: #3a2800; /* muted dark brown */
+  --nav-accent: #111111;
+  --nav-text: #111111;
+  --nav-text-dim: #3a2800;
   --nav-border: rgba(0, 0, 0, 0.12);
-  --nav-drop-bg: #1a1a1a; /* dark dropdown for contrast */
+  --nav-drop-bg: #1a1a1a;
   --nav-drop-hover: #242424;
 }
 
-/* ── Reset & base ────────────────────────────────────────── */
 .header * {
   box-sizing: border-box;
 }
@@ -38,14 +37,13 @@
     backdrop-filter 0.3s ease;
 }
 
-/* Frosted glass on scroll */
 .header.scrolled {
   background: var(--nav-bg-blur);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* ── Logo ────────────────────────────────────────────────── */
+/* ── Logo ── */
 .nav-left {
   display: flex;
   align-items: center;
@@ -67,12 +65,11 @@
   display: block;
 }
 
-/* Mobile centered logo */
 .nav-logo-mobile {
   display: none;
 }
 
-/* ── Center nav links ─────────────────────────────────────── */
+/* ── Nav links ── */
 .nav-links {
   list-style: none;
   display: flex;
@@ -92,7 +89,6 @@
   align-items: center;
 }
 
-/* All top-level links */
 .nav-links > li > a {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
@@ -110,7 +106,6 @@
   white-space: nowrap;
 }
 
-/* Animated underline */
 .nav-links > li > a::after {
   content: "";
   position: absolute;
@@ -134,7 +129,7 @@
   transform: scaleX(1);
 }
 
-/* ── Mega dropdown ───────────────────────────────────────── */
+/* ── Dropdown ── */
 .dropdown {
   position: relative;
 }
@@ -169,10 +164,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-.dropdown-menu li {
-  padding: 0;
-}
-
 .dropdown-menu li a {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
@@ -194,7 +185,6 @@
   color: #f4a62a;
 }
 
-/* Dropdown divider */
 .dropdown-menu .drop-divider {
   height: 1px;
   background: rgba(255, 255, 255, 0.08);
@@ -202,7 +192,6 @@
   padding: 0;
 }
 
-/* Dropdown label */
 .dropdown-menu .drop-label {
   font-family: "DM Sans", sans-serif;
   font-size: 10px;
@@ -214,7 +203,6 @@
   pointer-events: none;
 }
 
-/* Chevron icon in link */
 .nav-links > li > a .chevron {
   font-size: 8px;
   margin-left: 5px;
@@ -226,14 +214,13 @@
   transform: rotate(180deg);
 }
 
-/* ── Right: Auth area ─────────────────────────────────────── */
+/* ── Auth area ── */
 .nav-icons {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Guest login button */
 .btn-login {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
@@ -262,7 +249,7 @@
   display: none !important;
 }
 
-/* Logged-in user dropdown */
+/* ── User dropdown ── */
 .user-dropdown {
   position: relative;
 }
@@ -321,7 +308,6 @@
   transform: rotate(180deg);
 }
 
-/* User dropdown panel */
 .user-dropdown-menu {
   position: absolute;
   top: calc(100% + 10px);
@@ -413,7 +399,6 @@
   background: var(--nav-drop-hover);
   color: #fff !important;
 }
-
 .user-dropdown-item:hover i {
   color: #f4a62a;
 }
@@ -428,6 +413,25 @@
   list-style: none;
 }
 
+/* ── Admin shortcut link ── */
+.user-dropdown-admin {
+  color: var(--nav-bg) !important; /* orange text to stand out */
+}
+
+.user-dropdown-admin i {
+  color: var(--nav-bg) !important;
+}
+
+.user-dropdown-admin:hover {
+  background: rgba(244, 166, 42, 0.12) !important;
+  color: #f4a62a !important;
+}
+
+.user-dropdown-admin:hover i {
+  color: #f4a62a !important;
+}
+
+/* ── Logout ── */
 .user-dropdown-logout {
   color: #e05c5c !important;
 }
@@ -439,9 +443,36 @@
   color: #e05c5c !important;
 }
 
-/* ── Scroll JS helper ─────────────────────────────────────── */
-.tablet-only {
-  display: none;
+/* ── Badges ── */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 99px;
+  background: #111111;
+  color: #f4a62a;
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.nav-sale {
+  color: #8b0000 !important;
+  font-weight: 700 !important;
+}
+.nav-sale:hover {
+  color: #cc0000 !important;
+}
+.nav-sale::after {
+  background: #8b0000 !important;
+}
+.nav-sale i {
+  font-size: 10px;
+  margin-left: 3px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -451,7 +482,6 @@
   .header {
     padding: 0 24px;
   }
-
   .nav-links > li:nth-child(5) {
     display: none;
   }
@@ -461,7 +491,6 @@
    MOBILE  ≤ 768px
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Show items hidden on tablet */
   .nav-links > li:nth-child(5) {
     display: flex;
   }
@@ -486,7 +515,6 @@
     display: none;
   }
 
-  /* Centered logo */
   .nav-logo-mobile {
     display: block;
     position: absolute;
@@ -498,7 +526,6 @@
     height: 44px;
   }
 
-  /* Slide-in drawer */
   .nav-links {
     position: fixed;
     top: var(--nav-h);
@@ -521,7 +548,6 @@
     left: 0;
   }
 
-  /* Backdrop overlay */
   .nav-backdrop {
     display: none;
     position: fixed;
@@ -554,12 +580,10 @@
   .nav-links > li > a.active {
     color: #f4a62a;
   }
-
   .nav-links > li > a::after {
     display: none;
   }
 
-  /* Mobile dropdown — JS toggles .active */
   .dropdown-menu {
     position: static;
     transform: none !important;
@@ -596,45 +620,10 @@
     padding: 6px 24px 2px 40px;
     font-size: 10px;
   }
-
   .dropdown-menu .drop-divider {
     margin: 4px 24px;
   }
-
   .chevron {
     display: inline-block !important;
   }
-}
-
-/* ── "New" pill badge on Hàng Mới ───────────────────────── */
-.nav-badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  padding: 2px 6px;
-  border-radius: 99px;
-  background: #111111;
-  color: #f4a62a;
-  margin-left: 6px;
-  vertical-align: middle;
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-
-/* ── Sale link — red accent ──────────────────────────────── */
-.nav-sale {
-  color: #8b0000 !important;
-  font-weight: 700 !important;
-}
-.nav-sale:hover {
-  color: #cc0000 !important;
-}
-.nav-sale::after {
-  background: #8b0000 !important;
-}
-.nav-sale i {
-  font-size: 10px;
-  margin-left: 3px;
 }

@@ -59,6 +59,10 @@ body {
   padding: 0 28px 40px;
 }
 
+.hide-on-desktop {
+  display: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .admin-wrapper {

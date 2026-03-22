@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Mật khẩu phải có ít nhất 6 ký tự.';
     } else {
         $stmt = $pdo->prepare(
-            "SELECT id, full_name, email, password_hash FROM users WHERE email = ? AND is_active = 1 LIMIT 1"
+            "SELECT id, full_name, email, password_hash, role FROM users WHERE email = ? AND is_active = 1 LIMIT 1"
         );
         $stmt->execute([$email]);
         $user = $stmt->fetch();
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['full_name'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_role'] = $user['role'];
 
             // Redirect back to wherever the user came from, or home
             $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '../home.php';

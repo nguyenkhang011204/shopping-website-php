@@ -1,41 +1,185 @@
 /* =====================================================
-   ADMIN HEADER — mirrors storefront header.css exactly:
-   same height (64px), same orange bg, same font, same
-   avatar pattern, same shadow
+   ADMIN HEADER — Responsive Command Bar
+   Hamburger toggle · search · profile pill · mobile-first
    ===================================================== */
-
+@import url("base.css");
 .admin-header {
-  height: 64px; /* --nav-h from storefront */
-  background: var(--brand-orange); /* #f4a62a — same as storefront */
+  height: 64px;
+  background: #f4a62a;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 12px rgba(244, 166, 42, 0.4); /* same as storefront */
+  padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 900;
   flex-shrink: 0;
+  gap: 12px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 rgba(0, 0, 0, 0.06),
+    0 4px 24px rgba(180, 120, 0, 0.18);
 }
 
-/* ── Left: page title ── */
+/* ═══════════════════════════════════════
+   LEFT — hamburger + title
+   ═══════════════════════════════════════ */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+/* ── Hamburger toggle button ── */
+.sidebar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+  outline: none;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(0, 0, 0, 0.14);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+/* Three bars */
+.toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    width 0.25s ease;
+}
+
+/* Animate to X when sidebar is open */
+.sidebar-toggle.active .toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.sidebar-toggle.active .toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.sidebar-toggle.active .toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Title block ── */
+.header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.header-breadcrumb {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.38);
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .header-title {
-  font-family: "Playfair Display", serif; /* same as storefront h1/h2 */
-  font-size: 18px;
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
   font-weight: 600;
-  color: var(--brand-dark);
-  letter-spacing: -0.2px;
+  color: #111111;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
-/* ── Right: actions cluster ── */
+/* ═══════════════════════════════════════
+   RIGHT — search + actions + profile
+   ═══════════════════════════════════════ */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
-/* Icon buttons (bell, message) — same ghost button style as storefront btn-login */
+/* ── Search bar ── */
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.09);
+  border: 1.5px solid rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 36px;
+  width: 180px;
+  transition:
+    width 0.25s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.header-search:focus-within {
+  width: 220px;
+  background: rgba(0, 0, 0, 0.13);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+.header-search i {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.header-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  color: #111111;
+  width: 100%;
+}
+
+.header-search input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* ── Separator ── */
+.header-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.14);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ── Icon buttons (bell, message) ── */
 .header-icon-btn {
   width: 36px;
   height: 36px;
@@ -43,59 +187,116 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  border: 1.5px solid rgba(0, 0, 0, 0.18);
-  background: rgba(0, 0, 0, 0.08);
-  color: var(--brand-dark);
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.07);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
+  transition: all 0.18s ease;
   position: relative;
+  flex-shrink: 0;
+  outline: none;
 }
 
 .header-icon-btn:hover {
-  background: rgba(0, 0, 0, 0.18);
-  border-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Notification dot */
-.header-icon-btn .badge {
+.header-icon-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Pulsing notification dot */
+.notif-dot {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 5px;
+  right: 5px;
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #e05c5c;
-  border: 1.5px solid var(--brand-orange);
+  border: 1.5px solid #f4a62a;
+  animation: pulse-dot 2.2s ease infinite;
 }
 
-/* ── Admin info card — mirrors storefront .user-avatar-btn ── */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0.75;
+  }
+}
+
+/* ── Back to storefront link ── */
+.header-shop-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.52);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.06);
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.header-shop-link:hover {
+  background: rgba(0, 0, 0, 0.14);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header-shop-link:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ── Admin profile pill ── */
 .admin-profile {
   display: flex;
   align-items: center;
   gap: 9px;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.08);
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
   border-radius: 99px;
   padding: 5px 14px 5px 5px;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
 }
 
 .admin-profile:hover {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.16);
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Avatar circle — same as storefront .user-avatar */
 .admin-avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--brand-dark); /* dark bg */
-  color: var(--brand-orange); /* orange letter */
+  background: #111111;
+  color: #f4a62a;
   font-size: 13px;
   font-weight: 700;
   font-family: "DM Sans", sans-serif;
@@ -103,65 +304,108 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  transition: box-shadow 0.18s ease;
+}
+
+.admin-profile:hover .admin-avatar {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.28);
 }
 
 .admin-profile-info {
   display: flex;
   flex-direction: column;
+  gap: 1px;
 }
 
-/* Same as storefront .user-avatar-name */
 .admin-profile-name {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: var(--brand-dark);
-  line-height: 1.3;
+  color: #111111;
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .admin-profile-role {
   font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  color: #3a2800; /* same --nav-text-dim from storefront */
-  line-height: 1.3;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  line-height: 1;
 }
 
-/* ── Storefront link (back to shop) ── */
-.header-shop-link {
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--brand-dark);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  border-radius: 6px;
-  border: 1.5px solid rgba(0, 0, 0, 0.18);
-  background: rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
-  white-space: nowrap;
+/* ═══════════════════════════════════════
+   SIDEBAR BACKDROP (mobile overlay)
+   ═══════════════════════════════════════ */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.header-shop-link:hover {
-  background: rgba(0, 0, 0, 0.16);
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
+/* ═══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════ */
+
+/* ── Tablet ≤ 1024px ── */
+@media (max-width: 1024px) {
   .admin-header {
-    padding: 0 16px;
+    padding: 0 18px;
   }
 
-  .header-shop-link span {
+  .header-search {
+    width: 140px;
+  }
+
+  .header-search:focus-within {
+    width: 180px;
+  }
+}
+
+/* ── Mobile ≤ 768px ── */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  /* Hide search bar — too cramped on mobile */
+  .header-search {
     display: none;
   }
 
+  /* Hide separator next to search */
+  .header-sep:first-of-type {
+    display: none;
+  }
+
+  /* Hide storefront link text, keep icon only */
+  .shop-link-text {
+    display: none;
+  }
+
+  .header-shop-link {
+    padding: 7px 9px;
+  }
+
+  /* Hide profile name/role — avatar only */
   .admin-profile-info {
     display: none;
   }
@@ -169,5 +413,31 @@
   .admin-profile {
     padding: 5px;
     border-radius: 50%;
+  }
+
+  /* Hide breadcrumb on very small screens */
+  .header-breadcrumb {
+    display: none;
+  }
+
+  .header-title {
+    font-size: 15px;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+}
+
+/* ── Small mobile ≤ 480px ── */
+@media (max-width: 480px) {
+  /* Hide messages button to save space */
+  .header-icon-btn:last-of-type {
+    display: none;
+  }
+
+  /* Hide second separator too */
+  .header-sep:last-of-type {
+    display: none;
   }
 }
