@@ -1,8 +1,7 @@
 /* =====================================================
-   ADMIN HEADER — Responsive Command Bar
-   Fixed: header-right overflow · toggle visibility
+   ADMIN HEADER — Responsive · Expanding mobile search
    ===================================================== */
-@import url("base.css");
+
 .admin-header {
   height: 64px;
   background: #f4a62a;
@@ -15,7 +14,6 @@
   z-index: 900;
   flex-shrink: 0;
   gap: 12px;
-  /* Prevent the header itself from overflowing */
   overflow: hidden;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -26,17 +24,17 @@
 }
 
 /* ═══════════════════════════════════════
-   LEFT — hamburger + title
+   LEFT
    ═══════════════════════════════════════ */
 .header-left {
   display: flex;
   align-items: center;
   gap: 14px;
-  /* Allow title to shrink but never push right side out */
+  flex: 1;
   min-width: 0;
 }
 
-/* ── Hamburger: hidden on desktop, shown on mobile ── */
+/* ── Hamburger ── */
 .sidebar-toggle {
   display: none;
   flex-direction: column;
@@ -61,7 +59,6 @@
   border-color: rgba(0, 0, 0, 0.18);
 }
 
-/* Three bars */
 .toggle-bar {
   display: block;
   width: 100%;
@@ -74,7 +71,6 @@
     opacity 0.25s ease;
 }
 
-/* Animate to X when active */
 .sidebar-toggle.active .toggle-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -86,12 +82,11 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ── Title block ── */
+/* ── Title ── */
 .header-title-wrap {
   display: flex;
   flex-direction: column;
   gap: 1px;
-  /* Let title truncate before pushing right side off screen */
   min-width: 0;
   overflow: hidden;
 }
@@ -121,63 +116,99 @@
 }
 
 /* ═══════════════════════════════════════
-   RIGHT — search + actions + profile
+   RIGHT
    ═══════════════════════════════════════ */
 .header-right {
   display: flex;
   align-items: center;
   gap: 6px;
-  /* Key fix: flex-shrink:0 so right side never collapses.
-     Left side (flex:1) absorbs the squeeze instead. */
-  flex-shrink: 1;
-  min-width: 0;
+  flex-shrink: 0;
 }
 
-/* ── Search bar ── */
+/* ═══════════════════════════════════════
+   SEARCH — desktop always-visible bar
+   ═══════════════════════════════════════ */
 .header-search {
   display: flex;
   align-items: center;
-  gap: 8px;
   background: rgba(0, 0, 0, 0.09);
   border: 1.5px solid rgba(0, 0, 0, 0.09);
   border-radius: 8px;
-  padding: 0 12px;
   height: 36px;
-  width: 180px;
+  overflow: hidden;
   transition:
-    width 0.25s ease,
     background 0.18s ease,
-    border-color 0.18s ease;
-  flex: 1;
-  min-width: 100px;
-  max-width: 200px;
+    border-color 0.18s ease,
+    width 0.28s ease;
 }
 
 .header-search:focus-within {
-  max-width: 240px;
   background: rgba(0, 0, 0, 0.13);
   border-color: rgba(0, 0, 0, 0.22);
 }
 
-.header-search i {
-  font-size: 11px;
-  color: rgba(0, 0, 0, 0.35);
+/* Icon button inside search (always visible) */
+.search-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  cursor: pointer;
   flex-shrink: 0;
+  outline: none;
+  transition: color 0.15s ease;
 }
 
-.header-search input {
+.search-icon-btn:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Text input */
+.search-input {
   border: none;
   background: transparent;
   outline: none;
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
   color: #111111;
-  width: 100%;
-  min-width: 0;
+  /* Desktop: visible with fixed width */
+  width: 150px;
+  padding-right: 10px;
+  transition: width 0.28s ease;
 }
 
-.header-search input::placeholder {
+.search-input::placeholder {
   color: rgba(0, 0, 0, 0.35);
+}
+
+.header-search:focus-within .search-input {
+  width: 190px;
+}
+
+/* Close button — hidden on desktop */
+.search-close-btn {
+  display: none;
+  width: 30px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+.search-close-btn:hover {
+  color: rgba(0, 0, 0, 0.75);
 }
 
 /* ── Separator ── */
@@ -189,7 +220,7 @@
   flex-shrink: 0;
 }
 
-/* ── Icon buttons (bell, message) ── */
+/* ── Icon buttons ── */
 .header-icon-btn {
   width: 36px;
   height: 36px;
@@ -221,7 +252,6 @@
   box-shadow: none;
 }
 
-/* Pulsing notification dot */
 .notif-dot {
   position: absolute;
   top: 5px;
@@ -246,7 +276,7 @@
   }
 }
 
-/* ── Back to storefront link ── */
+/* ── Storefront link ── */
 .header-shop-link {
   font-family: "DM Sans", sans-serif;
   font-size: 11px;
@@ -264,9 +294,7 @@
   white-space: nowrap;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  flex-shrink: 1;
-  max-width: 120px;
-  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .header-shop-link:hover {
@@ -277,12 +305,7 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.header-shop-link:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* ── Admin profile pill ── */
+/* ── Profile pill ── */
 .admin-profile {
   display: flex;
   align-items: center;
@@ -294,10 +317,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: all 0.18s ease;
-  flex-shrink: 1;
-  min-width: 0;
-  max-width: 160px;
-  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .admin-profile:hover {
@@ -331,8 +351,6 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  min-width: 0;
-  overflow: hidden;
 }
 
 .admin-profile-name {
@@ -340,7 +358,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #111111;
-  max-width: 100%;
+  max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -357,9 +375,7 @@
   line-height: 1;
 }
 
-/* ═══════════════════════════════════════
-   SIDEBAR BACKDROP (mobile overlay)
-   ═══════════════════════════════════════ */
+/* ── Backdrop ── */
 .sidebar-backdrop {
   display: none;
   position: fixed;
@@ -378,29 +394,30 @@
 }
 
 /* ═══════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
+   TABLET ≤ 1024px
    ═══════════════════════════════════════ */
-
-/* ── Tablet ≤ 1024px ── */
 @media (max-width: 1024px) {
   .admin-header {
     padding: 0 18px;
   }
 
-  .header-search {
-    width: 140px;
+  .search-input {
+    width: 120px;
   }
-
-  .header-search:focus-within {
-    width: 170px;
+  .header-search:focus-within .search-input {
+    width: 160px;
   }
 }
 
-/* ── Mobile ≤ 768px ── */
+/* ═══════════════════════════════════════
+   MOBILE ≤ 768px
+   ═══════════════════════════════════════ */
 @media (max-width: 768px) {
   .admin-header {
     padding: 0 14px;
     gap: 8px;
+    /* Give extra room when search expands */
+    overflow: visible;
   }
 
   /* Show hamburger */
@@ -408,54 +425,103 @@
     display: flex;
   }
 
-  /* Hide search — too cramped */
+  /* Hide breadcrumb */
+  .header-breadcrumb {
+    display: none;
+  }
+  .header-title {
+    font-size: 15px;
+  }
+
+  /* ── Mobile search: collapsed = icon-only circle ── */
   .header-search {
-    display: none;
+    /* Collapsed state: 36×36 icon button */
+    width: 36px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    position: relative;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-radius 0.3s ease,
+      background 0.18s ease;
   }
 
-  /* Hide first separator (was next to search) */
-  .header-sep:first-of-type {
-    display: none;
+  /* Input hidden in collapsed state */
+  .search-input {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease,
+      padding 0.3s ease;
   }
 
-  /* Shop link: icon only, no text */
+  /* Close button hidden in collapsed state */
+  .search-close-btn {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  /* ── Expanded state (JS adds .expanded) ── */
+  .header-search.expanded {
+    /* Grow to fill available space */
+    width: min(260px, calc(100vw - 140px));
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.11);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .header-search.expanded .search-input {
+    width: 100%;
+    padding-right: 4px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .header-search.expanded .search-close-btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Hide shop link text — icon only */
   .shop-link-text {
     display: none;
   }
-
   .header-shop-link {
     padding: 7px 9px;
   }
 
-  /* Profile pill: avatar only */
+  /* Profile: avatar only */
   .admin-profile-info {
     display: none;
   }
-
   .admin-profile {
     padding: 5px;
     border-radius: 50%;
   }
 
-  /* Hide breadcrumb */
-  .header-breadcrumb {
+  /* Hide first separator (between search and shop link) */
+  .header-sep:not(.header-sep-right) {
     display: none;
-  }
-
-  .header-title {
-    font-size: 15px;
   }
 }
 
-/* ── Small mobile ≤ 480px ── */
+/* ═══════════════════════════════════════
+   SMALL MOBILE ≤ 480px
+   ═══════════════════════════════════════ */
 @media (max-width: 480px) {
   /* Drop messages button */
-  .header-icon-btn:last-of-type {
+  .header-msg-btn {
     display: none;
   }
-
-  /* Drop second separator */
-  .header-sep:last-of-type {
+  /* Drop right separator */
+  .header-sep-right {
     display: none;
   }
 }
