@@ -1,57 +1,173 @@
-/* HEADER */
-.header {
+/* =====================================================
+   ADMIN HEADER — mirrors storefront header.css exactly:
+   same height (64px), same orange bg, same font, same
+   avatar pattern, same shadow
+   ===================================================== */
+
+.admin-header {
+  height: 64px; /* --nav-h from storefront */
+  background: var(--brand-orange); /* #f4a62a — same as storefront */
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  margin: 20px 30px 20px;
-}
-
-.right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.right a {
-  text-decoration: none;
-}
-
-.admin-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  background: #fff;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  width: fit-content;
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #f59e0b; /* màu vàng cam */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 15px;
-  color: #fff;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 12px rgba(244, 166, 42, 0.4); /* same as storefront */
+  position: sticky;
+  top: 0;
+  z-index: 900;
   flex-shrink: 0;
 }
 
-.name {
-  margin: 0;
+/* ── Left: page title ── */
+.header-title {
+  font-family: "Playfair Display", serif; /* same as storefront h1/h2 */
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  letter-spacing: -0.2px;
+}
+
+/* ── Right: actions cluster ── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Icon buttons (bell, message) — same ghost button style as storefront btn-login */
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--brand-dark);
   font-size: 14px;
-  font-weight: 500;
-  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.header-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Notification dot */
+.header-icon-btn .badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e05c5c;
+  border: 1.5px solid var(--brand-orange);
+}
+
+/* ── Admin info card — mirrors storefront .user-avatar-btn ── */
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  border-radius: 99px;
+  padding: 5px 14px 5px 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.admin-profile:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Avatar circle — same as storefront .user-avatar */
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--brand-dark); /* dark bg */
+  color: var(--brand-orange); /* orange letter */
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Same as storefront .user-avatar-name */
+.admin-profile-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  line-height: 1.3;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-profile-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  color: #3a2800; /* same --nav-text-dim from storefront */
   line-height: 1.3;
 }
 
-.role {
-  margin: 0;
+/* ── Storefront link (back to shop) ── */
+.header-shop-link {
+  font-family: "DM Sans", sans-serif;
   font-size: 12px;
-  color: #6b7280;
-  line-height: 1.3;
+  font-weight: 600;
+  color: var(--brand-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-shop-link:hover {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 0 16px;
+  }
+
+  .header-shop-link span {
+    display: none;
+  }
+
+  .admin-profile-info {
+    display: none;
+  }
+
+  .admin-profile {
+    padding: 5px;
+    border-radius: 50%;
+  }
 }

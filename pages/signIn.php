@@ -15,12 +15,10 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once '../includes/dbconnect.php';
 
-    $email    = trim($_POST['email']    ?? '');
-    $password =      $_POST['password'] ?? '';
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Email không hợp lệ.';
-    } elseif (strlen($password) < 6) {
+    if (strlen($password) < 6) {
         $error = 'Mật khẩu phải có ít nhất 6 ký tự.';
     } else {
         $stmt = $pdo->prepare(
@@ -31,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user && password_verify($password, $user['password_hash'])) {
             session_regenerate_id(true);
-            $_SESSION['user_id']    = $user['id'];
-            $_SESSION['user_name']  = $user['full_name'];
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['full_name'];
             $_SESSION['user_email'] = $user['email'];
 
             // Redirect back to wherever the user came from, or home
@@ -46,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // ── View ──────────────────────────────────────────────────────
-$page_title   = "Đăng nhập";
-$page_css     = "../assets/css/signin.css";
-$base_path    = "../";
+$page_title = "Đăng nhập";
+$page_css = "../assets/css/signin.css";
+$base_path = "../";
 $page_scripts = ["../assets/js/signin.js"];
 
 ob_start();
@@ -68,17 +66,14 @@ ob_start();
     <form action="" method="POST" class="form-signin" id="signinForm">
         <div class="input-group">
             <i class="fa fa-envelope"></i>
-            <input type="email" name="email" id="emailInput"
-                placeholder="Email"
-                value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"
-                required maxlength="255">
+            <input type="text" name="email" id="emailInput" placeholder="Email"
+                value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required maxlength="255">
         </div>
 
         <div class="input-group">
             <i class="fa fa-lock"></i>
-            <input type="password" name="password" id="passwordInput"
-                placeholder="Mật khẩu"
-                required minlength="6" maxlength="255">
+            <input type="password" name="password" id="passwordInput" placeholder="Mật khẩu" required minlength="6"
+                maxlength="255">
         </div>
 
         <div class="checkbox-group">
