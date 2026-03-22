@@ -30,8 +30,9 @@
 }
 
 .sidebar .logo img {
-  height: 40px;
+  height: 100px;
   width: auto;
+  margin-left: 30px;
   /* Invert if logo is dark so it's visible on dark sidebar */
   filter: brightness(0) invert(1);
 }
