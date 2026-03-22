@@ -13,12 +13,23 @@ $first_name    = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] :
 $current_page   = basename($_SERVER['PHP_SELF']);
 $hide_login_btn = in_array($current_page, ['signin.php', 'signup.php']);
 
-// Highlight active nav item
-$current_uri = $_SERVER['REQUEST_URI'] ?? '';
-function navActive(string $match, string $uri): string
-{
-    return str_contains($uri, $match) ? 'active' : '';
-}
+// ── Active nav detection ──────────────────────────────────
+$current_uri  = $_SERVER['REQUEST_URI'] ?? '';
+$current_path = parse_url($current_uri, PHP_URL_PATH) ?? '';
+$query_string = $_SERVER['QUERY_STRING'] ?? '';
+parse_str($query_string, $query_params);
+
+$current_sort     = $query_params['sort']     ?? '';
+$current_category = $query_params['category'] ?? '';
+
+$is_product_page = str_contains($current_path, 'product.php')
+    && !str_contains($current_path, 'product_detail.php');
+
+$nav_active_home    = str_contains($current_path, 'home.php') ? 'active' : '';
+$nav_active_new     = ($is_product_page && $current_sort === 'newest')    ? 'active' : '';
+$nav_active_sale    = ($is_product_page && $current_sort === 'price_asc') ? 'active' : '';
+// "Sản phẩm" active only when not on a special sort link
+$nav_active_product = ($is_product_page && $current_sort !== 'newest' && $current_sort !== 'price_asc') ? 'active' : '';
 ?>
 
 <div class="nav-backdrop" id="navBackdrop"></div>
@@ -35,21 +46,19 @@ function navActive(string $match, string $uri): string
         </a>
     </div>
 
-    <!-- CENTER: slim nav -->
+    <!-- CENTER: nav links -->
     <ul class="nav-links" id="navLinks">
 
         <!-- Trang chủ -->
         <li>
-            <a href="<?= $base_path ?>home.php"
-                class="<?= navActive('home.php', $current_uri) ?>">
+            <a href="<?= $base_path ?>home.php" class="<?= $nav_active_home ?>">
                 Trang chủ
             </a>
         </li>
 
         <!-- Hàng mới -->
         <li>
-            <a href="<?= $base_path ?>pages/product.php?sort=newest"
-                class="<?= navActive('sort=newest', $current_uri) ?>">
+            <a href="<?= $base_path ?>pages/product.php?sort=newest" class="<?= $nav_active_new ?>">
                 Hàng mới
                 <span class="nav-badge">New</span>
             </a>
@@ -57,8 +66,7 @@ function navActive(string $match, string $uri): string
 
         <!-- Sản phẩm — mega dropdown -->
         <li class="dropdown">
-            <a href="<?= $base_path ?>pages/product.php"
-                class="<?= navActive('product', $current_uri) ?>">
+            <a href="<?= $base_path ?>pages/product.php" class="<?= $nav_active_product ?>">
                 Sản phẩm <i class="fa-solid fa-chevron-down chevron"></i>
             </a>
             <ul class="dropdown-menu">
@@ -83,7 +91,7 @@ function navActive(string $match, string $uri): string
 
         <!-- Sale -->
         <li>
-            <a href="<?= $base_path ?>pages/product.php?sort=price_asc" class="nav-sale">
+            <a href="<?= $base_path ?>pages/product.php?sort=price_asc" class="nav-sale <?= $nav_active_sale ?>">
                 Sale <i class="fa-solid fa-bolt"></i>
             </a>
         </li>

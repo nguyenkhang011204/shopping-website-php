@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap");
 
 /* ═══════════════════════════════════════════════════════════
-   HEADER — Elevated Minimal Dark
+   HEADER — Orange Brand Theme
    ═══════════════════════════════════════════════════════════ */
 
 :root {
   --nav-h: 64px;
-  --nav-bg: #111111;
-  --nav-bg-blur: rgba(17, 17, 17, 0.92);
-  --nav-accent: #c8a96e; /* warm gold */
-  --nav-text: #e8e8e8;
-  --nav-text-dim: #888888;
-  --nav-border: rgba(255, 255, 255, 0.08);
-  --nav-drop-bg: #1a1a1a;
+  --nav-bg: #f4a62a; /* orange */
+  --nav-bg-blur: rgba(244, 166, 42, 0.95);
+  --nav-accent: #111111; /* dark accent for highlights */
+  --nav-text: #111111; /* dark text on orange */
+  --nav-text-dim: #3a2800; /* muted dark brown */
+  --nav-border: rgba(0, 0, 0, 0.12);
+  --nav-drop-bg: #1a1a1a; /* dark dropdown for contrast */
   --nav-drop-hover: #242424;
 }
 
@@ -31,7 +31,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 48px;
-  border-bottom: 1px solid var(--nav-border);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 12px rgba(244, 166, 42, 0.4);
   transition:
     background 0.3s ease,
     backdrop-filter 0.3s ease;
@@ -95,7 +96,7 @@
 .nav-links > li > a {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--nav-text-dim);
@@ -116,8 +117,8 @@
   bottom: 0;
   left: 20px;
   right: 20px;
-  height: 2px;
-  background: var(--nav-accent);
+  height: 2.5px;
+  background: #111111;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.25s ease;
@@ -125,7 +126,7 @@
 
 .nav-links > li > a:hover,
 .nav-links > li > a.active {
-  color: #fff;
+  color: #111111;
 }
 
 .nav-links > li > a:hover::after,
@@ -144,7 +145,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(8px);
   background: var(--nav-drop-bg);
-  border: 1px solid var(--nav-border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 8px;
   min-width: 200px;
@@ -176,7 +177,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  color: var(--nav-text-dim);
+  color: #aaaaaa;
   text-decoration: none;
   display: block;
   padding: 10px 16px;
@@ -190,25 +191,25 @@
 
 .dropdown-menu li a:hover {
   background: var(--nav-drop-hover);
-  color: #fff;
+  color: #f4a62a;
 }
 
 /* Dropdown divider */
 .dropdown-menu .drop-divider {
   height: 1px;
-  background: var(--nav-border);
+  background: rgba(255, 255, 255, 0.08);
   margin: 6px 8px;
   padding: 0;
 }
 
-/* Dropdown label (non-link header inside menu) */
+/* Dropdown label */
 .dropdown-menu .drop-label {
   font-family: "DM Sans", sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--nav-accent);
+  color: #f4a62a;
   padding: 10px 16px 4px;
   pointer-events: none;
 }
@@ -236,24 +237,25 @@
 .btn-login {
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.5px;
-  color: var(--nav-text-dim) !important;
+  color: #ffffff !important;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
   border-radius: 6px;
-  border: 1px solid var(--nav-border);
+  border: 1.5px solid rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.12);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .btn-login:hover {
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.22);
 }
 
 .btn-login::after {
@@ -269,8 +271,8 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--nav-border);
+  background: rgba(0, 0, 0, 0.12);
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
   border-radius: 99px;
   cursor: pointer;
   padding: 5px 14px 5px 5px;
@@ -280,16 +282,16 @@
 }
 
 .user-avatar-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.35);
 }
 
 .user-avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--nav-accent);
-  color: #111;
+  background: #111111;
+  color: #f4a62a;
   font-size: 13px;
   font-weight: 700;
   display: flex;
@@ -301,8 +303,8 @@
 
 .user-avatar-name {
   font-size: 13px;
-  font-weight: 500;
-  color: var(--nav-text);
+  font-weight: 600;
+  color: #111111;
   max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -311,7 +313,7 @@
 
 .user-chevron {
   font-size: 9px;
-  color: var(--nav-text-dim);
+  color: #3a2800;
   transition: transform 0.2s ease;
 }
 
@@ -325,7 +327,7 @@
   top: calc(100% + 10px);
   right: 0;
   background: var(--nav-drop-bg);
-  border: 1px solid var(--nav-border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   width: 240px;
   padding: 6px;
@@ -351,7 +353,7 @@
 
 .user-dropdown-header {
   padding: 14px 16px 12px;
-  border-bottom: 1px solid var(--nav-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   list-style: none;
   margin-bottom: 4px;
 }
@@ -370,7 +372,7 @@
 .udh-email {
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
-  color: var(--nav-text-dim);
+  color: #888888;
   display: block;
   margin-top: 2px;
   white-space: nowrap;
@@ -387,7 +389,7 @@
   align-items: center;
   gap: 11px;
   padding: 10px 12px;
-  color: var(--nav-text-dim);
+  color: #aaaaaa;
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -403,7 +405,7 @@
   font-size: 13px;
   width: 16px;
   text-align: center;
-  color: var(--nav-text-dim);
+  color: #888888;
   flex-shrink: 0;
 }
 
@@ -413,7 +415,7 @@
 }
 
 .user-dropdown-item:hover i {
-  color: var(--nav-accent);
+  color: #f4a62a;
 }
 .user-dropdown-item::after {
   display: none !important;
@@ -421,7 +423,7 @@
 
 .user-dropdown-divider {
   height: 1px;
-  background: var(--nav-border);
+  background: rgba(255, 255, 255, 0.08);
   margin: 4px 0;
   list-style: none;
 }
@@ -503,7 +505,7 @@
     left: -100%;
     width: 280px;
     height: calc(100dvh - var(--nav-h));
-    background: var(--nav-drop-bg);
+    background: #1a1a1a;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -512,7 +514,7 @@
     overflow-y: auto;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1999;
-    border-right: 1px solid var(--nav-border);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .nav-links.active {
@@ -544,8 +546,13 @@
     width: 100%;
     padding: 13px 24px;
     font-size: 13px;
-    color: var(--nav-text-dim);
+    color: #aaaaaa;
     height: auto;
+  }
+
+  .nav-links > li > a:hover,
+  .nav-links > li > a.active {
+    color: #f4a62a;
   }
 
   .nav-links > li > a::after {
@@ -608,8 +615,8 @@
   letter-spacing: 0.8px;
   padding: 2px 6px;
   border-radius: 99px;
-  background: var(--nav-accent);
-  color: #111;
+  background: #111111;
+  color: #f4a62a;
   margin-left: 6px;
   vertical-align: middle;
   text-transform: uppercase;
@@ -618,13 +625,14 @@
 
 /* ── Sale link — red accent ──────────────────────────────── */
 .nav-sale {
-  color: #e05c5c !important;
+  color: #8b0000 !important;
+  font-weight: 700 !important;
 }
 .nav-sale:hover {
-  color: #ff7070 !important;
+  color: #cc0000 !important;
 }
 .nav-sale::after {
-  background: #e05c5c !important;
+  background: #8b0000 !important;
 }
 .nav-sale i {
   font-size: 10px;
