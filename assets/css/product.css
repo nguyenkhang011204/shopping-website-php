@@ -1,11 +1,11 @@
 /* ===== PRODUCT PAGE STYLES ===== */
-/* Import shared/base styles only */
 @import url("base.css");
 
 /*-----Product Page Header & Sorting-----*/
 .product-header {
   max-width: 1200px;
   margin: 40px auto;
+  padding: 0 20px;
 }
 
 .product-header-top {
@@ -34,6 +34,38 @@
   font-size: 14px;
 }
 
+/*-----Category Filter Pills-----*/
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 12px;
+}
+
+.cat-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #ddd;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cat-pill:hover {
+  border-color: #f4a62a;
+  color: #f4a62a;
+}
+
+.cat-pill.active {
+  background: #f4a62a;
+  border-color: #f4a62a;
+  color: #fff;
+}
+
 /*-----Pagination-----*/
 .pagination {
   display: flex;
@@ -44,11 +76,19 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 20px;
 }
 
 .page-numbers {
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+
+.page-numbers span {
+  color: #999;
+  font-size: 16px;
+  padding: 0 4px;
 }
 
 .page-numbers a {
@@ -86,4 +126,20 @@
 .next-page a:hover,
 .previous-page a:hover {
   color: #f4a62a;
+}
+
+/*-----Responsive-----*/
+@media (max-width: 768px) {
+  .product-header {
+    margin: 20px auto;
+  }
+
+  .category-filter {
+    gap: 6px;
+  }
+
+  .cat-pill {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
 }

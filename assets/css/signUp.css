@@ -1,70 +1,67 @@
-@import url("base.css");
+@import url("auth-forms.css");
 
-.content {
-  margin: 0 auto;
-  width: 400px;
-}
-
-/*-----Sign In-----*/
-h2 {
+/*-----Sign Up Specific Styles-----*/
+.signup-container h2 {
   text-align: center;
-  margin-top: 50px;
+  margin: 40px 0 8px 0;
+  font-size: 26px;
+  font-weight: bold;
+  color: #222;
 }
 
-.form-signUp {
+.form-signup {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 36px 40px;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 }
 
-.input-group {
-  display: flex;
-  align-items: center;
-  border: 1px solid orange;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.input-group i {
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-.input-group input {
+.btn-signup {
+  background-color: #f4a62a;
+  color: #222;
   border: none;
-  outline: none;
-  flex: 1;
-}
-
-.have-user {
-  display: flex;
-}
-
-.have-user a {
-  color: black;
-  margin-right: 15px;
-}
-
-.btn-SignUp {
-  border: 1px solid black;
-  color: white;
-  background-color: black;
-  font-weight: bold;
-  width: 50%;
-  text-align: center;
-  padding: 10px 0;
-  margin: 15px auto;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 14px 0;
+  border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin-bottom: 15px;
 }
 
-.btn-SignUp:hover {
-  color: orange;
-  transition: color 0.3s ease;
+.btn-signup:hover {
+  background-color: #f2991f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 166, 42, 0.3);
+}
+
+.btn-signup:active {
+  transform: translateY(0);
+}
+
+.signin-link {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.signin-link a {
+  color: #f4a62a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-  h2 {
-    margin-top: 100px;
+  .form-signup {
+    padding: 24px 20px;
   }
 }

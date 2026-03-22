@@ -1,26 +1,31 @@
 <?php
-$page_title = "Trang chủ";
-$page_css = "assets/css/main.css";
-$base_path = "";
+require_once 'includes/dbconnect.php';
+
+$page_title   = "Trang chủ";
+$page_css     = "assets/css/main.css";
+$base_path    = "";
 $page_scripts = ["assets/js/main.js"];
 
-// Start output buffering to capture page content
+// Fetch newest 8 active products
+$new_products = $pdo->query(
+    "SELECT id, name, price, image FROM products WHERE is_active = 1 ORDER BY created_at DESC LIMIT 8"
+)->fetchAll();
+
+// Fetch 8 featured products
+$hot_products = $pdo->query(
+    "SELECT id, name, price, image FROM products WHERE is_active = 1 AND is_featured = 1 ORDER BY created_at DESC LIMIT 8"
+)->fetchAll();
+
 ob_start();
 ?>
 
 <div class="carousel">
     <div class="carousel-track">
-        <div class="slide"><img src="assets/images/Slide1.jpg"></div>
-        <div class="slide"><img src="assets/images/Slide2.png"></div>
+        <div class="slide"><img src="assets/images/Slide1.jpg" alt="Slide 1"></div>
+        <div class="slide"><img src="assets/images/Slide2.png" alt="Slide 2"></div>
     </div>
-
-    <button class="carousel-btn prev">
-        <i class="fa-solid fa-chevron-left"></i>
-    </button>
-
-    <button class="carousel-btn next">
-        <i class="fa-solid fa-chevron-right"></i>
-    </button>
+    <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
 <!-- NEW PRODUCTS -->
@@ -30,23 +35,8 @@ ob_start();
     <div class="line"></div>
 </div>
 
-<?php
-$products = [
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-    ['name' => 'Áo thể thao HKT - Sport T-Shirt', 'price' => '379.000đ', 'image' => 'upload/Ao321.png'],
-];
-include('includes/product_list.php');
-?>
+<?php $products = $new_products;
+include('includes/product_list.php'); ?>
 
 <div class="view-more-wrapper">
     <a href="pages/product.php"><button class="view-more-btn">XEM THÊM</button></a>
@@ -54,7 +44,7 @@ include('includes/product_list.php');
 
 <!-- BANNER -->
 <div class="banner">
-    <img src="assets/images/banner.png" alt="">
+    <img src="assets/images/banner.png" alt="Banner">
 </div>
 
 <!-- HOT PRODUCTS -->
@@ -64,16 +54,14 @@ include('includes/product_list.php');
     <div class="line"></div>
 </div>
 
-<?php
-include('includes/product_list.php');
-?>
+<?php $products = $hot_products;
+include('includes/product_list.php'); ?>
 
 <div class="view-more-wrapper">
     <a href="pages/product.php"><button class="view-more-btn">XEM THÊM</button></a>
 </div>
 
 <?php
-// Capture output and include layout
 $page_content = ob_get_clean();
 include('includes/layout.php');
 ?>
