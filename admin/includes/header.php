@@ -16,7 +16,7 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
 
     <!-- Left: hamburger + title -->
     <div class="header-left">
-        <button class="sidebar-toggle hide-on-desktop" id="sidebarToggle">
+        <button class="sidebar-toggle" id="sidebarToggle">
             <span class="toggle-bar"></span>
             <span class="toggle-bar"></span>
             <span class="toggle-bar"></span>

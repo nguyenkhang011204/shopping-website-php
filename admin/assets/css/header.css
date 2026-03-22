@@ -1,6 +1,6 @@
 /* =====================================================
    ADMIN HEADER — Responsive Command Bar
-   Hamburger toggle · search · profile pill · mobile-first
+   Fixed: header-right overflow · toggle visibility
    ===================================================== */
 @import url("base.css");
 .admin-header {
@@ -15,6 +15,8 @@
   z-index: 900;
   flex-shrink: 0;
   gap: 12px;
+  /* Prevent the header itself from overflowing */
+  overflow: hidden;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow:
@@ -30,11 +32,11 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-shrink: 0;
+  /* Allow title to shrink but never push right side out */
   min-width: 0;
 }
 
-/* ── Hamburger toggle button ── */
+/* ── Hamburger: hidden on desktop, shown on mobile ── */
 .sidebar-toggle {
   display: none;
   flex-direction: column;
@@ -48,10 +50,10 @@
   border-radius: 8px;
   cursor: pointer;
   flex-shrink: 0;
+  outline: none;
   transition:
     background 0.18s ease,
     border-color 0.18s ease;
-  outline: none;
 }
 
 .sidebar-toggle:hover {
@@ -69,11 +71,10 @@
   transform-origin: center;
   transition:
     transform 0.25s ease,
-    opacity 0.25s ease,
-    width 0.25s ease;
+    opacity 0.25s ease;
 }
 
-/* Animate to X when sidebar is open */
+/* Animate to X when active */
 .sidebar-toggle.active .toggle-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -90,7 +91,9 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
+  /* Let title truncate before pushing right side off screen */
   min-width: 0;
+  overflow: hidden;
 }
 
 .header-breadcrumb {
@@ -124,7 +127,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-shrink: 0;
+  /* Key fix: flex-shrink:0 so right side never collapses.
+     Left side (flex:1) absorbs the squeeze instead. */
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 /* ── Search bar ── */
@@ -142,10 +148,13 @@
     width 0.25s ease,
     background 0.18s ease,
     border-color 0.18s ease;
+  flex: 1;
+  min-width: 100px;
+  max-width: 200px;
 }
 
 .header-search:focus-within {
-  width: 220px;
+  max-width: 240px;
   background: rgba(0, 0, 0, 0.13);
   border-color: rgba(0, 0, 0, 0.22);
 }
@@ -164,6 +173,7 @@
   font-size: 12px;
   color: #111111;
   width: 100%;
+  min-width: 0;
 }
 
 .header-search input::placeholder {
@@ -254,7 +264,9 @@
   white-space: nowrap;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  max-width: 120px;
+  overflow: hidden;
 }
 
 .header-shop-link:hover {
@@ -282,7 +294,10 @@
   cursor: pointer;
   text-decoration: none;
   transition: all 0.18s ease;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 160px;
+  overflow: hidden;
 }
 
 .admin-profile:hover {
@@ -316,6 +331,8 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .admin-profile-name {
@@ -323,7 +340,7 @@
   font-size: 13px;
   font-weight: 600;
   color: #111111;
-  max-width: 100px;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -375,7 +392,7 @@
   }
 
   .header-search:focus-within {
-    width: 180px;
+    width: 170px;
   }
 }
 
@@ -386,17 +403,22 @@
     gap: 8px;
   }
 
-  /* Hide search bar — too cramped on mobile */
+  /* Show hamburger */
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  /* Hide search — too cramped */
   .header-search {
     display: none;
   }
 
-  /* Hide separator next to search */
+  /* Hide first separator (was next to search) */
   .header-sep:first-of-type {
     display: none;
   }
 
-  /* Hide storefront link text, keep icon only */
+  /* Shop link: icon only, no text */
   .shop-link-text {
     display: none;
   }
@@ -405,7 +427,7 @@
     padding: 7px 9px;
   }
 
-  /* Hide profile name/role — avatar only */
+  /* Profile pill: avatar only */
   .admin-profile-info {
     display: none;
   }
@@ -415,7 +437,7 @@
     border-radius: 50%;
   }
 
-  /* Hide breadcrumb on very small screens */
+  /* Hide breadcrumb */
   .header-breadcrumb {
     display: none;
   }
@@ -423,20 +445,16 @@
   .header-title {
     font-size: 15px;
   }
-
-  .sidebar-toggle {
-    display: flex;
-  }
 }
 
 /* ── Small mobile ≤ 480px ── */
 @media (max-width: 480px) {
-  /* Hide messages button to save space */
+  /* Drop messages button */
   .header-icon-btn:last-of-type {
     display: none;
   }
 
-  /* Hide second separator too */
+  /* Drop second separator */
   .header-sep:last-of-type {
     display: none;
   }

@@ -41,16 +41,16 @@
 
         <!-- PAGE CONTENT -->
         <main class="admin-main">
-            <?php include $content; ?>
+            
         </main>
-
-    </div>
-
-    <!-- Page-specific scripts (same pattern as $page_scripts in storefront) -->
-    <?php if (isset($page_scripts)): ?>
-        <?php foreach ($page_scripts as $script): ?>
-            <script src="<?= htmlspecialchars($script) ?>"></script>
-        <?php endforeach; ?>
+     
+               </div>
+   
+     <!-- Page-specific scripts (same pattern as $page_scripts in storefront) -->
+       <?php if (isset($page_scripts)): ?>
+                    <?php foreach ($page_scripts as $script): ?>
+                    <script src="<?= htmlspecialchars($script) ?>"></script>
+            <?php endforeach; ?>
     <?php endif; ?>
 
 </body>
