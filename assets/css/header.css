@@ -322,7 +322,7 @@
 
 .user-dropdown-item:hover {
   background: #f7f7f7;
-  color: #111;
+  color: #111 !important;
 }
 .user-dropdown-item:hover i {
   color: #555;

@@ -59,13 +59,11 @@ $hide_login_btn = in_array($current_page, ['signin.php', 'signup.php']);
         </li>
 
         <li class="hide-on-tablet"><a href="#">VỀ CHÚNG TÔI</a></li>
-        <li class="hide-on-tablet"><a href="#">ĐƠN HÀNG</a></li>
 
         <li class="dropdown tablet-only">
             <a href="#">KHÁC ▾</a>
             <ul class="dropdown-menu">
                 <li><a href="#">VỀ CHÚNG TÔI</a></li>
-                <li><a href="#">ĐƠN HÀNG</a></li>
             </ul>
         </li>
     </ul>
