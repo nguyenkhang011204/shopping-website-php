@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') {
+    header('Location: ../pages/signin.php?redirect=../admin/index.php');
+    exit;
+}
+
 $page = $_GET['page'] ?? 'dashboard';
 
 $routes = [
@@ -60,4 +67,3 @@ if (isset($routes[$page])) {
 }
 
 include("includes/layout.php");
-?>

@@ -41,7 +41,7 @@
 
         <!-- PAGE CONTENT -->
         <main class="admin-main">
-            
+            <?php include $content; ?>
         </main>
      
                </div>

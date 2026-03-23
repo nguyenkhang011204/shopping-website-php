@@ -1,7 +1,5 @@
 <?php
 // pages/signin.php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 session_start();
 
 // Already logged in → go home
@@ -12,15 +10,23 @@ if (isset($_SESSION['user_id'])) {
 
 $error = '';
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once '../includes/dbconnect.php';
+
+    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        $error = 'Yêu cầu không hợp lệ. Vui lòng thử lại.';
+    }
 
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if (strlen($password) < 6) {
+    if ($error === '' && strlen($password) < 6) {
         $error = 'Mật khẩu phải có ít nhất 6 ký tự.';
-    } else {
+    } elseif ($error === '') {
         $stmt = $pdo->prepare(
             "SELECT id, full_name, email, password_hash, role FROM users WHERE email = ? AND is_active = 1 LIMIT 1"
         );
@@ -35,7 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_role'] = $user['role'];
 
             // Redirect back to wherever the user came from, or home
-            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '../home.php';
+            $allowed_redirects = ['../home.php', '../admin/index.php'];
+            $redirect = '../home.php';
+            if (isset($_GET['redirect']) && in_array($_GET['redirect'], $allowed_redirects)) {
+                $redirect = $_GET['redirect'];
+            }
             header("Location: " . $redirect);
             exit;
         } else {
@@ -65,6 +75,7 @@ ob_start();
     <?php endif; ?>
 
     <form action="" method="POST" class="form-signin" id="signinForm">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         <div class="input-group">
             <i class="fa fa-envelope"></i>
             <input type="text" name="email" id="emailInput" placeholder="Email"
