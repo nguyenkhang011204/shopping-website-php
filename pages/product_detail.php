@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/dbconnect.php';
 
-$id = (int)($_GET['id'] ?? 0);
+$id = (int) ($_GET['id'] ?? 0);
 if ($id <= 0) {
     header("Location: product.php");
     exit;
@@ -25,7 +25,8 @@ $imgStmt = $pdo->prepare(
 );
 $imgStmt->execute([$id]);
 $images = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
-if (empty($images)) $images = [$product['image']];
+if (empty($images))
+    $images = [$product['image']];
 
 $sizeStmt = $pdo->prepare(
     "SELECT size, stock FROM product_sizes WHERE product_id = ?
@@ -43,9 +44,9 @@ $otherStmt = $pdo->prepare(
 $otherStmt->execute([$id, $product['category_id']]);
 $other_products = $otherStmt->fetchAll();
 
-$page_title   = htmlspecialchars($product['name']);
-$page_css     = "../assets/css/product_detail.css";
-$base_path    = "../";
+$page_title = htmlspecialchars($product['name']);
+$page_css = "../assets/css/product_detail.css";
+$base_path = "../";
 $page_scripts = ["../assets/js/product_detail.js"];
 
 ob_start();
@@ -80,8 +81,7 @@ ob_start();
                 <?php foreach ($images as $i => $img): ?>
                     <div class="thumb-item <?= $i === 0 ? 'active' : '' ?>"
                         onclick="changeImg(this, '<?= htmlspecialchars($img) ?>')">
-                        <img src="<?= htmlspecialchars($img) ?>"
-                            alt=""
+                        <img src="<?= htmlspecialchars($img) ?>" alt=""
                             onerror="this.src='../assets/images/placeholder.png'">
                     </div>
                 <?php endforeach; ?>
@@ -89,10 +89,8 @@ ob_start();
 
             <!-- Main image -->
             <div class="main-img-wrap">
-                <img src="<?= htmlspecialchars($images[0]) ?>"
-                    alt="<?= htmlspecialchars($product['name']) ?>"
-                    id="main-image"
-                    onerror="this.src='../assets/images/placeholder.png'">
+                <img src="<?= htmlspecialchars($images[0]) ?>" alt="<?= htmlspecialchars($product['name']) ?>"
+                    id="main-image" onerror="this.src='../assets/images/placeholder.png'">
             </div>
 
         </div>
@@ -112,7 +110,7 @@ ob_start();
             <p class="sku">SKU: <?= htmlspecialchars($product['sku'] ?? '—') ?></p>
 
             <!-- Price -->
-            <p class="price"><?= number_format((float)$product['price'], 0, ',', '.') ?>đ</p>
+            <p class="price"><?= number_format((float) $product['price'], 0, ',', '.') ?>đ</p>
 
             <!-- Stock -->
             <?php if ($product['stock'] > 0): ?>
@@ -135,8 +133,7 @@ ob_start();
                     <?php foreach ($sizes as $i => $s): ?>
                         <button type="button"
                             class="size-chip <?= $s['stock'] == 0 ? 'disabled' : ($i === 0 ? 'selected' : '') ?>"
-                            data-size="<?= htmlspecialchars($s['size']) ?>"
-                            <?= $s['stock'] == 0 ? 'disabled' : '' ?>>
+                            data-size="<?= htmlspecialchars($s['size']) ?>" <?= $s['stock'] == 0 ? 'disabled' : '' ?>>
                             <?= htmlspecialchars($s['size']) ?>
                         </button>
                     <?php endforeach; ?>
@@ -155,19 +152,17 @@ ob_start();
             <label class="field-label">Số lượng</label>
             <div class="qty-row">
                 <button type="button" class="qty-btn" id="qtyMinus">−</button>
-                <input class="qty-input" id="qtyInput" type="number"
-                    value="1" min="1" max="<?= (int)$product['stock'] ?>">
+                <input class="qty-input" id="qtyInput" type="number" value="1" min="1"
+                    max="<?= (int) $product['stock'] ?>">
                 <button type="button" class="qty-btn" id="qtyPlus">+</button>
             </div>
 
             <!-- Action buttons -->
             <div class="btn-group">
-                <button class="add-cart" data-id="<?= $product['id'] ?>"
-                    <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
+                <button class="add-cart" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
                     <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
                 </button>
-                <button class="buy" data-id="<?= $product['id'] ?>"
-                    <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
+                <button class="buy" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
                     Đặt hàng ngay
                 </button>
             </div>
