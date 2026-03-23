@@ -10,8 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../includes/dbconnect.php';
 
-$user_id = (int) $_SESSION['user_id'];
-$tab = $_GET['tab'] ?? 'info';
+$user_id  = (int) $_SESSION['user_id'];
+$is_admin = ($_SESSION['user_role'] ?? '') === 'admin';
+$tab = $_GET['tab'] ?? ($is_admin ? 'password' : 'info');
 
 // Flash messages (survive POST-Redirect-GET)
 $flash_success = $_SESSION['flash_success'] ?? '';
@@ -35,7 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action'] ?? '';
 
-    // ── Update profile info ──────────────────────────────────────────────
+    // ── Update profile info (customers only) ────────────────────────────
+    if ($action === 'update_profile' && $is_admin) {
+        $_SESSION['flash_error'] = 'Tài khoản admin không thể thay đổi thông tin cá nhân.';
+        header("Location: profile.php?tab=password");
+        exit;
+    }
+
     if ($action === 'update_profile') {
         $full_name = trim($_POST['full_name'] ?? '');
         $phone     = trim($_POST['phone']     ?? '');
@@ -75,6 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo->prepare("UPDATE users SET password_hash = ? WHERE id = ?")->execute([$hash, $user_id]);
             $_SESSION['flash_success'] = 'Đổi mật khẩu thành công.';
         }
+        header("Location: profile.php?tab=password");
+        exit;
+    }
+
+    // ── Address actions (customers only) ────────────────────────────────
+    if ($is_admin && in_array($action, ['save_address', 'delete_address', 'set_default_address'])) {
+        $_SESSION['flash_error'] = 'Tài khoản admin không thể quản lý địa chỉ.';
         header("Location: profile.php?tab=password");
         exit;
     }
@@ -208,16 +222,19 @@ ob_start();
         </div>
 
         <nav class="profile-nav">
+            <?php if (!$is_admin): ?>
             <a href="profile.php?tab=info"
                class="profile-nav-item <?= $tab === 'info' ? 'active' : '' ?>">
                 <i class="fa-regular fa-user"></i>
                 Thông tin cá nhân
             </a>
+            <?php endif; ?>
             <a href="profile.php?tab=password"
                class="profile-nav-item <?= $tab === 'password' ? 'active' : '' ?>">
                 <i class="fa-solid fa-lock"></i>
                 Đổi mật khẩu
             </a>
+            <?php if (!$is_admin): ?>
             <a href="profile.php?tab=addresses"
                class="profile-nav-item <?= $tab === 'addresses' ? 'active' : '' ?>">
                 <i class="fa-solid fa-location-dot"></i>
@@ -226,6 +243,7 @@ ob_start();
                     <span class="addr-count"><?= count($addresses) ?></span>
                 <?php endif; ?>
             </a>
+            <?php endif; ?>
         </nav>
 
     </aside>
@@ -248,7 +266,7 @@ ob_start();
         <?php endif; ?>
 
         <!-- ══ TAB: Thông tin cá nhân ══════════════════════════════════ -->
-        <?php if ($tab === 'info'): ?>
+        <?php if ($tab === 'info' && !$is_admin): ?>
         <div class="profile-card">
             <div class="profile-card-header">
                 <h2><i class="fa-regular fa-user"></i> Thông tin cá nhân</h2>
@@ -377,7 +395,7 @@ ob_start();
         </div>
 
         <!-- ══ TAB: Địa chỉ ════════════════════════════════════════════ -->
-        <?php elseif ($tab === 'addresses'): ?>
+        <?php elseif ($tab === 'addresses' && !$is_admin): ?>
         <div class="profile-card">
             <div class="profile-card-header profile-card-header-row">
                 <div>
