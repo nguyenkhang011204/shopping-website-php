@@ -7,6 +7,9 @@ $is_logged_in = isset($_SESSION['user_id']);
 $is_admin = $is_logged_in && ($_SESSION['user_role'] ?? '') === 'admin';
 $user_name = $is_logged_in ? htmlspecialchars($_SESSION['user_name']) : '';
 $user_email = $is_logged_in ? htmlspecialchars($_SESSION['user_email']) : '';
+$cart_count = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
+    ? (int) array_sum(array_map('intval', $_SESSION['cart']))
+    : 0;
 $avatar_letter = $is_logged_in
     ? mb_strtoupper(mb_substr($_SESSION['user_name'], 0, 1, 'UTF-8'), 'UTF-8')
     : '';
@@ -31,6 +34,7 @@ $nav_active_home = str_contains($current_path, 'home.php') ? 'active' : '';
 $nav_active_new = ($is_product_page && $current_sort === 'newest') ? 'active' : '';
 $nav_active_sale = ($is_product_page && $current_sort === 'price_asc') ? 'active' : '';
 $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $current_sort !== 'price_asc') ? 'active' : '';
+$nav_active_cart = str_contains($current_path, 'cart.php') ? 'active' : '';
 ?>
 
 <div class="nav-backdrop" id="navBackdrop"></div>
@@ -103,6 +107,17 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
     <div class="nav-icons">
 
         <?php if ($is_logged_in): ?>
+            <a href="<?= $base_path ?>pages/cart.php"
+                class="nav-cart <?= $nav_active_cart ?> <?= $cart_count > 0 ? 'has-items' : '' ?>" aria-label="Giỏ hàng">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="nav-cart-label">Giỏ hàng</span>
+                <?php if ($cart_count >= 0): ?>
+                    <strong class="nav-cart-count">
+                        <?= min(99, $cart_count) ?>
+                    </strong>
+                <?php endif; ?>
+            </a>
+
             <div class="user-dropdown">
                 <button class="user-avatar-btn" type="button">
                     <span class="user-avatar"><?= $avatar_letter ?></span>
