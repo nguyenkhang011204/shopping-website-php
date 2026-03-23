@@ -8,12 +8,18 @@ $page_scripts = ["assets/js/main.js"];
 
 // Fetch newest 8 active products
 $new_products = $pdo->query(
-    "SELECT id, name, price, image FROM products WHERE is_active = 1 ORDER BY created_at DESC LIMIT 8"
+    "SELECT id, name, price,
+            (thumbnail_data IS NOT NULL) AS has_thumbnail,
+            (image_data IS NOT NULL) AS has_image
+     FROM products WHERE is_active = 1 ORDER BY created_at DESC LIMIT 8"
 )->fetchAll();
 
 // Fetch 8 featured products
 $hot_products = $pdo->query(
-    "SELECT id, name, price, image FROM products WHERE is_active = 1 AND is_featured = 1 ORDER BY created_at DESC LIMIT 8"
+    "SELECT id, name, price,
+            (thumbnail_data IS NOT NULL) AS has_thumbnail,
+            (image_data IS NOT NULL) AS has_image
+     FROM products WHERE is_active = 1 AND is_featured = 1 ORDER BY created_at DESC LIMIT 8"
 )->fetchAll();
 
 ob_start();

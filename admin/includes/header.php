@@ -2,11 +2,12 @@
 if (session_status() === PHP_SESSION_NONE)
     session_start();
 
-$admin_name = isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Admin';
-$admin_role = isset($_SESSION['user_role']) ? htmlspecialchars($_SESSION['user_role']) : 'admin';
+$admin_name    = isset($_SESSION['user_name'])  ? htmlspecialchars($_SESSION['user_name'])  : 'Admin';
+$admin_email   = isset($_SESSION['user_email']) ? htmlspecialchars($_SESSION['user_email']) : '';
+$admin_role    = isset($_SESSION['user_role'])  ? htmlspecialchars($_SESSION['user_role'])  : 'admin';
 $avatar_letter = mb_strtoupper(mb_substr($admin_name, 0, 1, 'UTF-8'), 'UTF-8');
-$role_label = $admin_role === 'admin' ? 'Admin' : 'Nhân viên';
-$current_text = htmlspecialchars($text_title ?? 'Dashboard');
+$role_label    = $admin_role === 'admin' ? 'Admin' : 'Nhân viên';
+$current_text  = htmlspecialchars($text_title ?? 'Dashboard');
 ?>
 
 <!-- Backdrop overlay (mobile sidebar) -->
@@ -30,11 +31,6 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
     <!-- Right: search + actions + profile -->
     <div class="header-right">
 
-        <!--
-            Search:
-            - Desktop: always-visible input bar
-            - Mobile:  glass icon that expands into full input on click
-        -->
         <div class="header-search" id="headerSearch">
             <button class="search-icon-btn" id="searchToggle" aria-label="Tìm kiếm">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -59,28 +55,55 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
             <span class="notif-dot"></span>
         </button>
 
-        <!-- Messages -->
-        <button class="header-icon-btn header-msg-btn" title="Tin nhắn">
-            <i class="fa-solid fa-message"></i>
-        </button>
-
         <div class="header-sep header-sep-right"></div>
 
-        <!-- Admin profile pill -->
-        <a href="index.php?page=profile" class="admin-profile">
-            <div class="admin-avatar"><?= $avatar_letter ?></div>
-            <div class="admin-profile-info">
-                <span class="admin-profile-name"><?= $admin_name ?></span>
-                <span class="admin-profile-role"><?= $role_label ?></span>
-            </div>
-        </a>
+        <!-- Admin profile dropdown — same structure as storefront user-dropdown -->
+        <div class="user-dropdown admin-user-dropdown">
+            <button class="user-avatar-btn" type="button" aria-label="Tài khoản">
+                <span class="user-avatar"><?= $avatar_letter ?></span>
+                <span class="user-avatar-name"><?= $admin_name ?></span>
+                <i class="fa-solid fa-chevron-down user-chevron"></i>
+            </button>
+
+            <ul class="user-dropdown-menu">
+
+                <li class="user-dropdown-header">
+                    <span class="udh-name"><?= $admin_name ?></span>
+                    <span class="udh-email"><?= $admin_email ?></span>
+                </li>
+
+                <li class="user-dropdown-li">
+                    <a href="../pages/profile.php" class="user-dropdown-item">
+                        <i class="fa-regular fa-user"></i>
+                        Tài khoản của tôi
+                    </a>
+                </li>
+
+                <li class="user-dropdown-li">
+                    <a href="../home.php" class="user-dropdown-item">
+                        <i class="fa-solid fa-store"></i>
+                        Về cửa hàng
+                    </a>
+                </li>
+
+                <li class="user-dropdown-divider"></li>
+
+                <li class="user-dropdown-li">
+                    <a href="../pages/logout.php" class="user-dropdown-item user-dropdown-logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Đăng xuất
+                    </a>
+                </li>
+
+            </ul>
+        </div>
 
     </div>
 
 </header>
 
 <script>
-    (function () {
+    (function() {
         /* ── Sidebar toggle ── */
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebar = document.querySelector('.sidebar');
@@ -100,18 +123,18 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
             document.body.style.overflow = '';
         }
 
-        sidebarToggle.addEventListener('click', function () {
+        sidebarToggle.addEventListener('click', function() {
             sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
         });
 
         sidebarBackdrop.addEventListener('click', closeSidebar);
 
-        window.addEventListener('resize', function () {
+        window.addEventListener('resize', function() {
             if (window.innerWidth > 768) closeSidebar();
         });
 
-        document.querySelectorAll('.sidebar .menu a').forEach(function (link) {
-            link.addEventListener('click', function () {
+        document.querySelectorAll('.sidebar .menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) closeSidebar();
             });
         });
@@ -132,8 +155,7 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
             searchInput.value = '';
         }
 
-        searchToggle.addEventListener('click', function () {
-            /* On desktop the input is always visible — clicking the icon focuses it */
+        searchToggle.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
                 searchBox.classList.contains('expanded') ? closeSearch() : openSearch();
             } else {
@@ -143,20 +165,34 @@ $current_text = htmlspecialchars($text_title ?? 'Dashboard');
 
         searchClose.addEventListener('click', closeSearch);
 
-        /* Close search when clicking outside on mobile */
-        document.addEventListener('click', function (e) {
-            if (window.innerWidth <= 768
-                && !searchBox.contains(e.target)
-                && searchBox.classList.contains('expanded')) {
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768 &&
+                !searchBox.contains(e.target) &&
+                searchBox.classList.contains('expanded')) {
                 closeSearch();
             }
         });
 
-        /* Close search on Escape */
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && searchBox.classList.contains('expanded')) {
                 closeSearch();
             }
         });
+
+        /* ── Profile dropdown: click toggle (supplements CSS :hover) ── */
+        const profileDropdown = document.querySelector('.admin-user-dropdown');
+        if (profileDropdown) {
+            const btn = profileDropdown.querySelector('.user-avatar-btn');
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('open');
+            });
+            document.addEventListener('click', function() {
+                profileDropdown.classList.remove('open');
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') profileDropdown.classList.remove('open');
+            });
+        }
     })();
 </script>

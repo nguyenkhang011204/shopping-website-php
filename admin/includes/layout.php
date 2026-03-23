@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -56,3 +57,4 @@
 </body>
 
 </html>
+<?php ob_end_flush(); ?>

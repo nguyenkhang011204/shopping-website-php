@@ -44,20 +44,6 @@ $page = $page ?? 'dashboard';
             <i class="fa-solid fa-user"></i>
             Khách hàng
         </a>
-
-        <a href="index.php?page=staffs" class="<?= $page === 'staffs' ? 'active' : '' ?>">
-            <i class="fa-solid fa-users"></i>
-            Nhân viên
-        </a>
-
-        <div class="menu-divider"></div>
-
-        <!-- Logout — same style as storefront user-dropdown-logout -->
-        <a href="../pages/logout.php" style="color: #e05c5c;">
-            <i class="fa-solid fa-right-from-bracket" style="color: #e05c5c;"></i>
-            Đăng xuất
-        </a>
-
     </nav>
 
 </aside>

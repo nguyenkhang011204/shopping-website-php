@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS hkt_shop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE hkt_shop;
- 
+
 CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -11,7 +11,8 @@ CREATE TABLE users (
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+-- Run database/setup_admin.php to create the admin user with a proper bcrypt hash.
+
 CREATE TABLE addresses (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
@@ -23,14 +24,14 @@ CREATE TABLE addresses (
     is_default TINYINT(1) NOT NULL DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+
 -- ── Categories ────────────────────────────────────────────────
 CREATE TABLE categories (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     slug VARCHAR(100) NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+
 -- ── Products ──────────────────────────────────────────────────
 CREATE TABLE products (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -41,22 +42,26 @@ CREATE TABLE products (
     description TEXT,
     price DECIMAL(12,2) NOT NULL,
     stock INT UNSIGNED NOT NULL DEFAULT 0,
-    image VARCHAR(255),           -- main image (URL or local path)
+    image_data      MEDIUMBLOB DEFAULT NULL,
+    image_mime      VARCHAR(20) DEFAULT NULL,
+    thumbnail_data  MEDIUMBLOB DEFAULT NULL,
+    thumbnail_mime  VARCHAR(20) DEFAULT NULL,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     is_featured TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
--- ── Product extra images ──────────────────────────────────────
+
+-- ── Product gallery images ────────────────────────────────────
 CREATE TABLE product_images (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     product_id INT UNSIGNED NOT NULL,
-    image VARCHAR(255) NOT NULL,   -- URL or local path
+    image_data MEDIUMBLOB NOT NULL,
+    image_mime VARCHAR(20) NOT NULL DEFAULT 'image/jpeg',
     sort_order INT UNSIGNED NOT NULL DEFAULT 0,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+
 -- ── Product sizes / stock per size ───────────────────────────
 CREATE TABLE product_sizes (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -65,7 +70,7 @@ CREATE TABLE product_sizes (
     stock INT UNSIGNED NOT NULL DEFAULT 0,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+
 -- ── Orders ───────────────────────────────────────────────────
 CREATE TABLE orders (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -80,7 +85,7 @@ CREATE TABLE orders (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT,
     FOREIGN KEY (address_id) REFERENCES addresses(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
- 
+
 CREATE TABLE order_items (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     order_id INT UNSIGNED NOT NULL,
@@ -91,6 +96,3 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO users (email, password_hash, full_name, role, is_active)
-VALUES ('admin', '$2y$10$wH8KZ7QfQe8j1pX0zFQxEuW8n0jK3ZcJ9fYw3Yx1z5b2k8QnFJZ2e', 'Admin HKT', 'admin', 1); -- Password: admin123
