@@ -91,7 +91,7 @@ $cartIds = array_values(array_filter($cartIds, fn($id) => $id > 0));
 if (!empty($cartIds)) {
     $placeholders = implode(',', array_fill(0, count($cartIds), '?'));
     $stmt = $pdo->prepare(
-        "SELECT id, name, price, image, stock
+        "SELECT id, name, price, stock
 		 FROM products
 		 WHERE is_active = 1 AND id IN ($placeholders)"
     );
@@ -127,7 +127,6 @@ if (!empty($cartIds)) {
         $cartItems[] = [
             'id' => $id,
             'name' => $product['name'],
-            'image' => $product['image'],
             'price' => (float) $product['price'],
             'stock' => $stock,
             'qty' => $qty,
@@ -181,7 +180,7 @@ ob_start();
                             <tr>
                                 <td>
                                     <div class="cart-product">
-                                        <img src="<?= htmlspecialchars($item['image']) ?>"
+                                        <img src="../img.php?p=<?= (int) $item['id'] ?>&t=main"
                                             alt="<?= htmlspecialchars($item['name']) ?>"
                                             onerror="this.src='../assets/images/placeholder.png'">
                                         <div>
