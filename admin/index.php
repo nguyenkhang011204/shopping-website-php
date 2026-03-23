@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
     exit;
 }
 
+require_once '../includes/dbconnect.php';
+
 $page = $_GET['page'] ?? 'dashboard';
 
 $routes = [
@@ -26,6 +28,12 @@ $routes = [
         'file' => 'pages/products.php',
         'css' => 'assets/css/dashboard.css',
         'text' => 'Quản lý sản phẩm'
+    ],
+    'product-form' => [
+        'title' => 'Sản phẩm - admin',
+        'file' => 'pages/product_form.php',
+        'css' => 'assets/css/dashboard.css',
+        'text' => 'Sản phẩm'
     ],
     'orders' => [
         'title' => 'Đơn hàng - admin',

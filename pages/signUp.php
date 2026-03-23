@@ -61,6 +61,16 @@ $page_scripts = ["../assets/js/signup.js"];
 ob_start();
 ?>
 
+<style>
+.alert{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;border-radius:8px;font-size:14px;line-height:1.5;margin-bottom:18px;}
+.alert i{font-size:16px;flex-shrink:0;margin-top:2px;}
+.alert-error{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;}
+.alert-error i{color:#dc2626;}
+.alert-success{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;}
+.alert-success i{color:#16a34a;}
+.alert-success a{color:#15803d;font-weight:600;text-decoration:underline;}
+</style>
+
 <div class="signup-container">
     <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
     <p class="subtitle">Tạo tài khoản để mua sắm tại HKT Shop</p>
@@ -76,7 +86,7 @@ ob_start();
         <div class="alert alert-success">
             <i class="fa-solid fa-circle-check"></i>
             <?php echo htmlspecialchars($success); ?>
-            <a href="signin.php" style="margin-left:8px; font-weight:600;">Đăng nhập ngay →</a>
+            <a href="signin.php">Đăng nhập ngay →</a>
         </div>
     <?php endif; ?>
 

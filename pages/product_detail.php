@@ -8,7 +8,10 @@ if ($id <= 0) {
 }
 
 $stmt = $pdo->prepare(
-    "SELECT p.*, c.name AS category_name, c.slug AS category_slug
+    "SELECT p.id, p.name, p.slug, p.sku, p.price, p.stock, p.description,
+            p.is_active, p.is_featured,
+            (p.image_data IS NOT NULL) AS has_image,
+            c.name AS category_name, c.slug AS category_slug
      FROM products p
      LEFT JOIN categories c ON c.id = p.category_id
      WHERE p.id = ? AND p.is_active = 1 LIMIT 1"
@@ -21,11 +24,13 @@ if (!$product) {
 }
 
 $imgStmt = $pdo->prepare(
-    "SELECT image FROM product_images WHERE product_id = ? ORDER BY sort_order"
+    "SELECT id FROM product_images WHERE product_id = ? ORDER BY sort_order"
 );
 $imgStmt->execute([$id]);
-$images = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
-if (empty($images)) $images = [$product['image']];
+$gallery_ids = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
+// Build image URL list — gallery first, fallback to main product image
+$images = array_map(fn($gid) => "../img.php?g={$gid}", $gallery_ids);
+if (empty($images) && $product['has_image']) $images = ["../img.php?p={$id}&t=main"];
 
 $sizeStmt = $pdo->prepare(
     "SELECT size, stock FROM product_sizes WHERE product_id = ?
@@ -36,7 +41,10 @@ $sizeStmt->execute([$id]);
 $sizes = $sizeStmt->fetchAll();
 
 $otherStmt = $pdo->prepare(
-    "SELECT id, name, price, image FROM products
+    "SELECT id, name, price,
+            (thumbnail_data IS NOT NULL) AS has_thumbnail,
+            (image_data     IS NOT NULL) AS has_image
+     FROM products
      WHERE is_active = 1 AND id != ?
      ORDER BY (category_id = ?) DESC, RAND() LIMIT 8"
 );
@@ -112,7 +120,7 @@ ob_start();
             <p class="sku">SKU: <?= htmlspecialchars($product['sku'] ?? '—') ?></p>
 
             <!-- Price -->
-            <p class="price"><?= number_format((float)$product['price'], 0, ',', '.') ?>đ</p>
+            <p class="price"><?= number_format((float)$product['price'], 0, ',', '.') ?> VNĐ</p>
 
             <!-- Stock -->
             <?php if ($product['stock'] > 0): ?>

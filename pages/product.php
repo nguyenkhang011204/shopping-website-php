@@ -42,7 +42,9 @@ $current_page = min($current_page, $total_pages);
 $offset       = ($current_page - 1) * $per_page;
 
 // ── Products ──────────────────────────────────────────────────
-$sql = "SELECT p.id, p.name, p.price, p.image
+$sql = "SELECT p.id, p.name, p.price,
+               (p.thumbnail_data IS NOT NULL) AS has_thumbnail,
+               (p.image_data     IS NOT NULL) AS has_image
         FROM products p
         LEFT JOIN categories c ON c.id = p.category_id
         $where
