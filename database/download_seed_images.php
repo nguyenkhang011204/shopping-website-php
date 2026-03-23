@@ -16,36 +16,36 @@ require BASE_DIR . '/includes/dbconnect.php';
 // product_id => ['image' => url, 'thumbnail' => url]
 $product_images = [
     1 => [
-        'image'     => 'https://i5.walmartimages.com/seo/Alimens-Gentle-Mens-Long-Sleeve-Stretch-Dress-Shirts-Casual-Button-Down-Shirt_d5cf7f15-87a2-48ac-84b9-a27401d84970.25eba54662edc99079389825a966ee00.png?odnWidth=180&odnHeight=180&odnBg=ffffff',
+        'image' => 'https://i5.walmartimages.com/seo/Alimens-Gentle-Mens-Long-Sleeve-Stretch-Dress-Shirts-Casual-Button-Down-Shirt_d5cf7f15-87a2-48ac-84b9-a27401d84970.25eba54662edc99079389825a966ee00.png?odnWidth=180&odnHeight=180&odnBg=ffffff',
         'thumbnail' => 'https://i5.walmartimages.com/seo/Alimens-Gentle-Mens-Long-Sleeve-Stretch-Dress-Shirts-Casual-Button-Down-Shirt_d5cf7f15-87a2-48ac-84b9-a27401d84970.25eba54662edc99079389825a966ee00.png?odnWidth=180&odnHeight=180&odnBg=ffffff',
     ],
     2 => [
-        'image'     => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71LyF4uUprL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
+        'image' => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71LyF4uUprL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
         'thumbnail' => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71LyF4uUprL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
     ],
     3 => [
-        'image'     => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71tdMD3TItL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
+        'image' => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71tdMD3TItL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
         'thumbnail' => 'https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C500%2C468%7C71tdMD3TItL.png%7C0%2C0%2C500%2C468%2B0.0%2C0.0%2C500.0%2C468.0_AC_SR400_.png',
     ],
     4 => [
-        'image'     => 'https://m.media-amazon.com/images/I/41JR4lcBXuS._AC_SR70_.jpg',
+        'image' => 'https://m.media-amazon.com/images/I/41JR4lcBXuS._AC_SR70_.jpg',
         'thumbnail' => 'https://m.media-amazon.com/images/I/41JR4lcBXuS._AC_SR70_.jpg',
     ],
     5 => [
-        'image'     => 'https://m.media-amazon.com/images/I/41dL+vU8-SL._AC_SR70_.jpg',
+        'image' => 'https://m.media-amazon.com/images/I/41dL+vU8-SL._AC_SR70_.jpg',
         'thumbnail' => 'https://m.media-amazon.com/images/I/41dL+vU8-SL._AC_SR70_.jpg',
     ],
     6 => [
-        'image'     => 'https://m.media-amazon.com/images/I/61ZHnVNnFwL._AC_SR70_.jpg',
-        'thumbnail' => 'https://m.media-amazon.com/images/I/61ZHnVNnFwL._AC_SR70_.jpg',
+        'image' => 'https://tse4.mm.bing.net/th/id/OIP.7b67Q-rqqzznoksnq6vExwHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3',
+        'thumbnail' => 'https://tse4.mm.bing.net/th/id/OIP.7b67Q-rqqzznoksnq6vExwHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3',
     ],
     7 => [
-        'image'     => 'https://m.media-amazon.com/images/I/51VZvNUGxcL._AC_SR70_.jpg',
-        'thumbnail' => 'https://m.media-amazon.com/images/I/51VZvNUGxcL._AC_SR70_.jpg',
+        'image' => 'https://cf.shopee.vn/file/79b0238cc63642217f64a33ea05e51d2',
+        'thumbnail' => 'https://cf.shopee.vn/file/79b0238cc63642217f64a33ea05e51d2',
     ],
     8 => [
-        'image'     => 'https://m.media-amazon.com/images/I/61x2QrZHFtL._AC_SR70_.jpg',
-        'thumbnail' => 'https://m.media-amazon.com/images/I/61x2QrZHFtL._AC_SR70_.jpg',
+        'image' => 'https://tse1.mm.bing.net/th/id/OIP.-niw-cnkf-e6V83I6IUTygHaHa?w=800&h=800&rs=1&pid=ImgDetMain&o=7&rm=3',
+        'thumbnail' => 'https://tse1.mm.bing.net/th/id/OIP.-niw-cnkf-e6V83I6IUTygHaHa?w=800&h=800&rs=1&pid=ImgDetMain&o=7&rm=3',
     ],
 ];
 
@@ -67,47 +67,53 @@ $gallery_images = [
         ['https://m.media-amazon.com/images/I/41dL+vU8-SL._AC_SR70_.jpg', 0],
         ['https://m.media-amazon.com/images/I/41f8H6XGruL._AC_SR70_.jpg', 1],
     ],
-    6 => [['https://m.media-amazon.com/images/I/61ZHnVNnFwL._AC_SR70_.jpg', 0]],
-    7 => [['https://m.media-amazon.com/images/I/51VZvNUGxcL._AC_SR70_.jpg', 0]],
-    8 => [['https://m.media-amazon.com/images/I/61x2QrZHFtL._AC_SR70_.jpg', 0]],
 ];
 
 // ── Download helper ───────────────────────────────────────────────────────
-function fetch_blob(string $url): ?array {
+function fetch_blob(string $url): ?array
+{
     if (function_exists('curl_init')) {
         $ch = curl_init($url);
         curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30,
-            CURLOPT_FOLLOWLOCATION => true, CURLOPT_MAXREDIRS => 5,
-            CURLOPT_USERAGENT => 'Mozilla/5.0', CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+            CURLOPT_USERAGENT => 'Mozilla/5.0',
+            CURLOPT_SSL_VERIFYPEER => false,
         ]);
         $data = curl_exec($ch);
-        $ok   = curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
+        $ok = curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
         @curl_close($ch);
-        if (!$ok || !$data) return null;
+        if (!$ok || !$data)
+            return null;
     } else {
         $data = @file_get_contents($url);
-        if (!$data) return null;
+        if (!$data)
+            return null;
     }
     $mime = (new finfo(FILEINFO_MIME_TYPE))->buffer($data);
-    if (!str_starts_with($mime, 'image/')) return null;
+    if (!str_starts_with($mime, 'image/'))
+        return null;
     return ['data' => $data, 'mime' => $mime];
 }
 
 // Output helper
 $is_browser = php_sapi_name() !== 'cli';
-function out(string $line): void {
+function out(string $line): void
+{
     global $is_browser;
     echo $is_browser ? nl2br(htmlspecialchars($line)) . "\n" : $line . "\n";
-    if ($is_browser) ob_flush();
+    if ($is_browser)
+        ob_flush();
     flush();
 }
 
 if ($is_browser) {
     echo '<!DOCTYPE html><html><head><meta charset="UTF-8">'
-       . '<title>Download Seed Images</title>'
-       . '<style>body{font-family:monospace;padding:20px;background:#111;color:#0f0;}</style>'
-       . '</head><body><pre>';
+        . '<title>Download Seed Images</title>'
+        . '<style>body{font-family:monospace;padding:20px;background:#111;color:#0f0;}</style>'
+        . '</head><body><pre>';
 }
 
 out("=== Downloading seed images into database ===\n");
@@ -120,7 +126,7 @@ $upd = $pdo->prepare(
 foreach ($product_images as $pid => $urls) {
     out("[product #{$pid}]");
 
-    $img_blob   = null;
+    $img_blob = null;
     $thumb_blob = null;
 
     out("  image: {$urls['image']}");
@@ -137,8 +143,8 @@ foreach ($product_images as $pid => $urls) {
     }
 
     $upd->execute([
-        $img_blob   ? $img_blob['data']   : null,
-        $img_blob   ? $img_blob['mime']   : null,
+        $img_blob ? $img_blob['data'] : null,
+        $img_blob ? $img_blob['mime'] : null,
         $thumb_blob ? $thumb_blob['data'] : null,
         $thumb_blob ? $thumb_blob['mime'] : null,
         $pid,
@@ -166,4 +172,5 @@ foreach ($gallery_images as $pid => $entries) {
 
 out("\n=== Done ===");
 
-if ($is_browser) echo '</pre></body></html>';
+if ($is_browser)
+    echo '</pre></body></html>';

@@ -2,18 +2,18 @@
 require_once '../includes/dbconnect.php';
 
 $page_title = "Sản Phẩm";
-$page_css   = "../assets/css/product.css";
-$base_path  = "../";
+$page_css = "../assets/css/product.css";
+$base_path = "../";
 
 // ── Inputs ───────────────────────────────────────────────────
-$per_page     = 12;
-$current_page = max(1, (int)($_GET['page']     ?? 1));
-$sort_key     =          $_GET['sort']     ?? 'newest';
-$cat_slug     =    trim($_GET['category']  ?? '');
+$per_page = 12;
+$current_page = max(1, (int) ($_GET['page'] ?? 1));
+$sort_key = $_GET['sort'] ?? 'newest';
+$cat_slug = trim($_GET['category'] ?? '');
 
 $sort_map = [
-    'newest'     => 'p.created_at DESC',
-    'price_asc'  => 'p.price ASC',
+    'newest' => 'p.created_at DESC',
+    'price_asc' => 'p.price ASC',
     'price_desc' => 'p.price DESC',
 ];
 $order_by = $sort_map[$sort_key] ?? 'p.created_at DESC';
@@ -22,11 +22,11 @@ $order_by = $sort_map[$sort_key] ?? 'p.created_at DESC';
 $categories = $pdo->query("SELECT id, name, slug FROM categories ORDER BY name")->fetchAll();
 
 // ── WHERE clause ──────────────────────────────────────────────
-$where  = "WHERE p.is_active = 1";
+$where = "WHERE p.is_active = 1";
 $params = [];
 
 if ($cat_slug !== '') {
-    $where   .= " AND c.slug = :cat_slug";
+    $where .= " AND c.slug = :cat_slug";
     $params[':cat_slug'] = $cat_slug;
 }
 
@@ -34,12 +34,12 @@ if ($cat_slug !== '') {
 $count_sql = "SELECT COUNT(*) FROM products p
               LEFT JOIN categories c ON c.id = p.category_id
               $where";
-$cnt_stmt  = $pdo->prepare($count_sql);
+$cnt_stmt = $pdo->prepare($count_sql);
 $cnt_stmt->execute($params);
-$total       = (int)$cnt_stmt->fetchColumn();
-$total_pages = max(1, (int)ceil($total / $per_page));
+$total = (int) $cnt_stmt->fetchColumn();
+$total_pages = max(1, (int) ceil($total / $per_page));
 $current_page = min($current_page, $total_pages);
-$offset       = ($current_page - 1) * $per_page;
+$offset = ($current_page - 1) * $per_page;
 
 // ── Products ──────────────────────────────────────────────────
 $sql = "SELECT p.id, p.name, p.price,
@@ -51,9 +51,10 @@ $sql = "SELECT p.id, p.name, p.price,
         ORDER BY $order_by
         LIMIT :limit OFFSET :offset";
 $stmt = $pdo->prepare($sql);
-foreach ($params as $k => $v) $stmt->bindValue($k, $v);
-$stmt->bindValue(':limit',  $per_page, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset,   PDO::PARAM_INT);
+foreach ($params as $k => $v)
+    $stmt->bindValue($k, $v);
+$stmt->bindValue(':limit', $per_page, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
 
@@ -85,8 +86,8 @@ ob_start();
             <label class="hide-on-phone">SẮP XẾP THEO:</label>
             <label><i class="fa-solid fa-filter"></i></label>
             <select onchange="window.location.href=buildQuery({sort:this.value,page:1})">
-                <option value="newest" <?= $sort_key === 'newest'     ? 'selected' : '' ?>>Mới nhất</option>
-                <option value="price_asc" <?= $sort_key === 'price_asc'  ? 'selected' : '' ?>>Giá thấp → cao</option>
+                <option value="newest" <?= $sort_key === 'newest' ? 'selected' : '' ?>>Mới nhất</option>
+                <option value="price_asc" <?= $sort_key === 'price_asc' ? 'selected' : '' ?>>Giá thấp → cao</option>
                 <option value="price_desc" <?= $sort_key === 'price_desc' ? 'selected' : '' ?>>Giá cao → thấp</option>
             </select>
         </div>
@@ -139,16 +140,19 @@ ob_start();
         <div class="page-numbers">
             <?php
             $start = max(1, $current_page - 2);
-            $end   = min($total_pages, $current_page + 2);
-            if ($start > 1) echo '<a href="' . buildQuery(['page' => 1]) . '">1</a>';
-            if ($start > 2) echo '<span>…</span>';
+            $end = min($total_pages, $current_page + 2);
+            if ($start > 1)
+                echo '<a href="' . buildQuery(['page' => 1]) . '">1</a>';
+            if ($start > 2)
+                echo '<span>…</span>';
             for ($i = $start; $i <= $end; $i++):
-            ?>
-                <a class="<?= $i === $current_page ? 'active' : '' ?>"
-                    href="<?= buildQuery(['page' => $i]) ?>"><?= $i ?></a>
+                ?>
+                <a class="<?= $i === $current_page ? 'active' : '' ?>" href="<?= buildQuery(['page' => $i]) ?>"><?= $i ?></a>
             <?php endfor;
-            if ($end < $total_pages - 1) echo '<span>…</span>';
-            if ($end < $total_pages) echo '<a href="' . buildQuery(['page' => $total_pages]) . '">' . $total_pages . '</a>';
+            if ($end < $total_pages - 1)
+                echo '<span>…</span>';
+            if ($end < $total_pages)
+                echo '<a href="' . buildQuery(['page' => $total_pages]) . '">' . $total_pages . '</a>';
             ?>
         </div>
 
