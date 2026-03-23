@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!emailInput.value.trim()) {
       showError(emailInput, "Vui lòng nhập email");
       isValid = false;
-    } else if (!isValidEmail(emailInput.value)) {
-      showError(emailInput, "Email không hợp lệ");
-      isValid = false;
     } else {
       clearError(emailInput);
     }
@@ -49,14 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     return isValid;
-  }
-
-  /**
-   * Check if email format is valid
-   */
-  function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   }
 
   /**

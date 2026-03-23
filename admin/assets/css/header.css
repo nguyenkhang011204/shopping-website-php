@@ -1,0 +1,527 @@
+/* =====================================================
+   ADMIN HEADER — Responsive · Expanding mobile search
+   ===================================================== */
+
+.admin-header {
+  height: 64px;
+  background: #f4a62a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  flex-shrink: 0;
+  gap: 12px;
+  overflow: hidden;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 rgba(0, 0, 0, 0.06),
+    0 4px 24px rgba(180, 120, 0, 0.18);
+}
+
+/* ═══════════════════════════════════════
+   LEFT
+   ═══════════════════════════════════════ */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Hamburger ── */
+.sidebar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(0, 0, 0, 0.14);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.sidebar-toggle.active .toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.sidebar-toggle.active .toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.sidebar-toggle.active .toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Title ── */
+.header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.header-breadcrumb {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.38);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.header-title {
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #111111;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════
+   RIGHT
+   ═══════════════════════════════════════ */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   SEARCH — desktop always-visible bar
+   ═══════════════════════════════════════ */
+.header-search {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.09);
+  border: 1.5px solid rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  height: 36px;
+  overflow: hidden;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    width 0.28s ease;
+}
+
+.header-search:focus-within {
+  background: rgba(0, 0, 0, 0.13);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+/* Icon button inside search (always visible) */
+.search-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+.search-icon-btn:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Text input */
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  color: #111111;
+  /* Desktop: visible with fixed width */
+  width: 150px;
+  padding-right: 10px;
+  transition: width 0.28s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.header-search:focus-within .search-input {
+  width: 190px;
+}
+
+/* Close button — hidden on desktop */
+.search-close-btn {
+  display: none;
+  width: 30px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  outline: none;
+  transition: color 0.15s ease;
+}
+
+.search-close-btn:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* ── Separator ── */
+.header-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.14);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ── Icon buttons ── */
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.07);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.header-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-icon-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.notif-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e05c5c;
+  border: 1.5px solid #f4a62a;
+  animation: pulse-dot 2.2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0.75;
+  }
+}
+
+/* ── Storefront link ── */
+.header-shop-link {
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.52);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.06);
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.header-shop-link:hover {
+  background: rgba(0, 0, 0, 0.14);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Profile pill ── */
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 99px;
+  padding: 5px 14px 5px 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.admin-profile:hover {
+  background: rgba(0, 0, 0, 0.16);
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #111111;
+  color: #f4a62a;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  transition: box-shadow 0.18s ease;
+}
+
+.admin-profile:hover .admin-avatar {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.28);
+}
+
+.admin-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.admin-profile-name {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111111;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.admin-profile-role {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  line-height: 1;
+}
+
+/* ── Backdrop ── */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════
+   TABLET ≤ 1024px
+   ═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .admin-header {
+    padding: 0 18px;
+  }
+
+  .search-input {
+    width: 120px;
+  }
+  .header-search:focus-within .search-input {
+    width: 160px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   MOBILE ≤ 768px
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 0 14px;
+    gap: 8px;
+    /* Give extra room when search expands */
+    overflow: visible;
+  }
+
+  /* Show hamburger */
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  /* Hide breadcrumb */
+  .header-breadcrumb {
+    display: none;
+  }
+  .header-title {
+    font-size: 15px;
+  }
+
+  /* ── Mobile search: collapsed = icon-only circle ── */
+  .header-search {
+    /* Collapsed state: 36×36 icon button */
+    width: 36px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    position: relative;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-radius 0.3s ease,
+      background 0.18s ease;
+  }
+
+  /* Input hidden in collapsed state */
+  .search-input {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease,
+      padding 0.3s ease;
+  }
+
+  /* Close button hidden in collapsed state */
+  .search-close-btn {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  /* ── Expanded state (JS adds .expanded) ── */
+  .header-search.expanded {
+    /* Grow to fill available space */
+    width: min(260px, calc(100vw - 140px));
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.11);
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .header-search.expanded .search-input {
+    width: 100%;
+    padding-right: 4px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .header-search.expanded .search-close-btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Hide shop link text — icon only */
+  .shop-link-text {
+    display: none;
+  }
+  .header-shop-link {
+    padding: 7px 9px;
+  }
+
+  /* Profile: avatar only */
+  .admin-profile-info {
+    display: none;
+  }
+  .admin-profile {
+    padding: 5px;
+    border-radius: 50%;
+  }
+
+  /* Hide first separator (between search and shop link) */
+  .header-sep:not(.header-sep-right) {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════
+   SMALL MOBILE ≤ 480px
+   ═══════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Drop messages button */
+  .header-msg-btn {
+    display: none;
+  }
+  /* Drop right separator */
+  .header-sep-right {
+    display: none;
+  }
+}

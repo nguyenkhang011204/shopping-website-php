@@ -1,34 +1,35 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
+if (session_status() === PHP_SESSION_NONE)
+    session_start();
 
-$base_path     = isset($base_path) ? $base_path : "";
-$is_logged_in  = isset($_SESSION['user_id']);
-$user_name     = $is_logged_in ? htmlspecialchars($_SESSION['user_name'])  : '';
-$user_email    = $is_logged_in ? htmlspecialchars($_SESSION['user_email']) : '';
+$base_path = isset($base_path) ? $base_path : "";
+$is_logged_in = isset($_SESSION['user_id']);
+$is_admin = $is_logged_in && ($_SESSION['user_role'] ?? '') === 'admin';
+$user_name = $is_logged_in ? htmlspecialchars($_SESSION['user_name']) : '';
+$user_email = $is_logged_in ? htmlspecialchars($_SESSION['user_email']) : '';
 $avatar_letter = $is_logged_in
     ? mb_strtoupper(mb_substr($_SESSION['user_name'], 0, 1, 'UTF-8'), 'UTF-8')
     : '';
-$first_name    = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : '';
+$first_name = $is_logged_in ? explode(' ', trim($_SESSION['user_name']))[0] : '';
 
-$current_page   = basename($_SERVER['PHP_SELF']);
+$current_page = basename($_SERVER['PHP_SELF']);
 $hide_login_btn = in_array($current_page, ['signin.php', 'signup.php']);
 
 // ── Active nav detection ──────────────────────────────────
-$current_uri  = $_SERVER['REQUEST_URI'] ?? '';
+$current_uri = $_SERVER['REQUEST_URI'] ?? '';
 $current_path = parse_url($current_uri, PHP_URL_PATH) ?? '';
 $query_string = $_SERVER['QUERY_STRING'] ?? '';
 parse_str($query_string, $query_params);
 
-$current_sort     = $query_params['sort']     ?? '';
+$current_sort = $query_params['sort'] ?? '';
 $current_category = $query_params['category'] ?? '';
 
 $is_product_page = str_contains($current_path, 'product.php')
     && !str_contains($current_path, 'product_detail.php');
 
-$nav_active_home    = str_contains($current_path, 'home.php') ? 'active' : '';
-$nav_active_new     = ($is_product_page && $current_sort === 'newest')    ? 'active' : '';
-$nav_active_sale    = ($is_product_page && $current_sort === 'price_asc') ? 'active' : '';
-// "Sản phẩm" active only when not on a special sort link
+$nav_active_home = str_contains($current_path, 'home.php') ? 'active' : '';
+$nav_active_new = ($is_product_page && $current_sort === 'newest') ? 'active' : '';
+$nav_active_sale = ($is_product_page && $current_sort === 'price_asc') ? 'active' : '';
 $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $current_sort !== 'price_asc') ? 'active' : '';
 ?>
 
@@ -49,14 +50,12 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
     <!-- CENTER: nav links -->
     <ul class="nav-links" id="navLinks">
 
-        <!-- Trang chủ -->
         <li>
             <a href="<?= $base_path ?>home.php" class="<?= $nav_active_home ?>">
                 Trang chủ
             </a>
         </li>
 
-        <!-- Hàng mới -->
         <li>
             <a href="<?= $base_path ?>pages/product.php?sort=newest" class="<?= $nav_active_new ?>">
                 Hàng mới
@@ -64,7 +63,6 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
             </a>
         </li>
 
-        <!-- Sản phẩm — mega dropdown -->
         <li class="dropdown">
             <a href="<?= $base_path ?>pages/product.php" class="<?= $nav_active_product ?>">
                 Sản phẩm <i class="fa-solid fa-chevron-down chevron"></i>
@@ -89,14 +87,12 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
             </ul>
         </li>
 
-        <!-- Sale -->
         <li>
             <a href="<?= $base_path ?>pages/product.php?sort=price_asc" class="nav-sale <?= $nav_active_sale ?>">
                 Sale <i class="fa-solid fa-bolt"></i>
             </a>
         </li>
 
-        <!-- Về chúng tôi -->
         <li>
             <a href="#">Về chúng tôi</a>
         </li>
@@ -113,27 +109,52 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
                     <span class="user-avatar-name"><?= htmlspecialchars($first_name) ?></span>
                     <i class="fa-solid fa-chevron-down user-chevron"></i>
                 </button>
+
                 <ul class="user-dropdown-menu">
+
+                    <!-- User info header -->
                     <li class="user-dropdown-header">
                         <span class="udh-name"><?= $user_name ?></span>
                         <span class="udh-email"><?= $user_email ?></span>
                     </li>
+
+                    <?php if ($is_admin): ?>
+                        <!-- Admin shortcut — only visible to admins -->
+                        <li class="user-dropdown-li">
+                            <a href="<?= $base_path ?>admin/index.php" class="user-dropdown-item user-dropdown-admin">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                Quản trị hệ thống
+                            </a>
+                        </li>
+                        <li class="user-dropdown-divider"></li>
+                    <?php endif; ?>
+
                     <li class="user-dropdown-li">
                         <a href="<?= $base_path ?>pages/profile.php" class="user-dropdown-item">
-                            <i class="fa-regular fa-user"></i> Tài khoản của tôi
+                            <i class="fa-regular fa-user"></i>
+                            Tài khoản của tôi
                         </a>
                     </li>
-                    <li class="user-dropdown-li">
-                        <a href="<?= $base_path ?>pages/order.php" class="user-dropdown-item">
-                            <i class="fa-regular fa-rectangle-list"></i> Đơn hàng của tôi
-                        </a>
-                    </li>
+
+                    <?php if (!$is_admin): ?>
+                        <!-- Orders only shown to regular customers -->
+                        <li class="user-dropdown-li">
+                            <a href="<?= $base_path ?>pages/order.php" class="user-dropdown-item">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                                Đơn hàng của tôi
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="user-dropdown-divider"></li>
+
                     <li class="user-dropdown-li">
                         <a href="<?= $base_path ?>pages/logout.php" class="user-dropdown-item user-dropdown-logout">
-                            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Đăng xuất
                         </a>
                     </li>
+
                 </ul>
             </div>
 
@@ -156,7 +177,7 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
 </nav>
 
 <script>
-    (function() {
+    (function () {
         const nav = document.getElementById('mainNav');
         const toggle = document.getElementById('menuToggle');
         const links = document.getElementById('navLinks');
@@ -165,9 +186,7 @@ $nav_active_product = ($is_product_page && $current_sort !== 'newest' && $curren
         // Frosted glass on scroll
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 10);
-        }, {
-            passive: true
-        });
+        }, { passive: true });
 
         // Open / close drawer
         function openMenu() {

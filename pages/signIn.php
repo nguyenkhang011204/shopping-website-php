@@ -1,7 +1,5 @@
 <?php
 // pages/signin.php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 session_start();
 
 // Already logged in → go home
@@ -12,31 +10,42 @@ if (isset($_SESSION['user_id'])) {
 
 $error = '';
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once '../includes/dbconnect.php';
 
-    $email    = trim($_POST['email']    ?? '');
-    $password =      $_POST['password'] ?? '';
+    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        $error = 'Yêu cầu không hợp lệ. Vui lòng thử lại.';
+    }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Email không hợp lệ.';
-    } elseif (strlen($password) < 6) {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($error === '' && strlen($password) < 6) {
         $error = 'Mật khẩu phải có ít nhất 6 ký tự.';
-    } else {
+    } elseif ($error === '') {
         $stmt = $pdo->prepare(
-            "SELECT id, full_name, email, password_hash FROM users WHERE email = ? AND is_active = 1 LIMIT 1"
+            "SELECT id, full_name, email, password_hash, role FROM users WHERE email = ? AND is_active = 1 LIMIT 1"
         );
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password_hash'])) {
             session_regenerate_id(true);
-            $_SESSION['user_id']    = $user['id'];
-            $_SESSION['user_name']  = $user['full_name'];
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['full_name'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_role'] = $user['role'];
 
             // Redirect back to wherever the user came from, or home
-            $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '../home.php';
+            $allowed_redirects = ['../home.php', '../admin/index.php'];
+            $redirect = '../home.php';
+            if (isset($_GET['redirect']) && in_array($_GET['redirect'], $allowed_redirects)) {
+                $redirect = $_GET['redirect'];
+            }
             header("Location: " . $redirect);
             exit;
         } else {
@@ -46,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // ── View ──────────────────────────────────────────────────────
-$page_title   = "Đăng nhập";
-$page_css     = "../assets/css/signin.css";
-$base_path    = "../";
+$page_title = "Đăng nhập";
+$page_css = "../assets/css/signin.css";
+$base_path = "../";
 $page_scripts = ["../assets/js/signin.js"];
 
 ob_start();
@@ -66,19 +75,17 @@ ob_start();
     <?php endif; ?>
 
     <form action="" method="POST" class="form-signin" id="signinForm">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         <div class="input-group">
             <i class="fa fa-envelope"></i>
-            <input type="email" name="email" id="emailInput"
-                placeholder="Email"
-                value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>"
-                required maxlength="255">
+            <input type="text" name="email" id="emailInput" placeholder="Email"
+                value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required maxlength="255">
         </div>
 
         <div class="input-group">
             <i class="fa fa-lock"></i>
-            <input type="password" name="password" id="passwordInput"
-                placeholder="Mật khẩu"
-                required minlength="6" maxlength="255">
+            <input type="password" name="password" id="passwordInput" placeholder="Mật khẩu" required minlength="6"
+                maxlength="255">
         </div>
 
         <div class="checkbox-group">

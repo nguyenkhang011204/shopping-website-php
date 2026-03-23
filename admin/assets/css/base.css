@@ -1,0 +1,71 @@
+/* =====================================================
+   ADMIN BASE — mirrors storefront CSS variable naming
+   ===================================================== */
+
+/* Same brand tokens as assets/css/header.css */
+:root {
+  --nav-bg: #f4a62a;
+  --nav-accent: #111111;
+  --nav-text: #111111;
+  --brand-orange: #f4a62a;
+  --brand-dark: #111111;
+
+  /* Admin-specific surface tokens */
+  --admin-sidebar-w: 240px;
+  --admin-bg: #f1f5f9; /* same as original */
+  --admin-surface: #ffffff;
+  --admin-border: #e5e7eb;
+  --admin-text: #111827;
+  --admin-muted: #6b7280;
+  --admin-radius: 12px;
+  --admin-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Reset (mirrors storefront base.css) ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Same font stack as storefront */
+body {
+  font-family:
+    "DM Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Layout shell ── */
+.admin-wrapper {
+  flex: 1;
+  margin-left: var(--admin-sidebar-w);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 0 28px 40px;
+}
+
+.hide-on-desktop {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .admin-wrapper {
+    margin-left: 0;
+  }
+}
