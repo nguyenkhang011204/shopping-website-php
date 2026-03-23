@@ -64,4 +64,45 @@ document.addEventListener("DOMContentLoaded", () => {
       qtyInput.value = val;
     });
   }
+
+  // ── Add to cart / Buy now actions ─────────────────────
+  const addCartBtn = document.querySelector(".add-cart[data-id]");
+  const buyNowBtn = document.querySelector(".buy[data-id]");
+
+  const getQuantity = () => {
+    if (!qtyInput) return 1;
+    const max = parseInt(qtyInput.max) || 999;
+    let val = parseInt(qtyInput.value) || 1;
+    if (val < 1) val = 1;
+    if (val > max) val = max;
+    qtyInput.value = val;
+    return val;
+  };
+
+  const goToCart = (mode) => {
+    const sourceBtn = mode === "buy" ? buyNowBtn : addCartBtn;
+    if (!sourceBtn) return;
+
+    const id = parseInt(sourceBtn.dataset.id, 10);
+    if (!id) return;
+
+    const qty = getQuantity();
+    const url = new URL("cart.php", window.location.href);
+    url.searchParams.set("action", "add");
+    url.searchParams.set("id", String(id));
+    url.searchParams.set("qty", String(qty));
+    if (mode === "buy") {
+      url.searchParams.set("buy_now", "1");
+    }
+
+    window.location.href = url.toString();
+  };
+
+  if (addCartBtn) {
+    addCartBtn.addEventListener("click", () => goToCart("add"));
+  }
+
+  if (buyNowBtn) {
+    buyNowBtn.addEventListener("click", () => goToCart("buy"));
+  }
 });

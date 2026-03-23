@@ -22,8 +22,15 @@ if (!function_exists('formatCurrencyVND')) {
 
 $cartMessage = '';
 
+if (isset($_SESSION['cart_flash']) && is_string($_SESSION['cart_flash'])) {
+    $cartMessage = $_SESSION['cart_flash'];
+    unset($_SESSION['cart_flash']);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['remove_id'])) {
+    $isRemovingSingleItem = isset($_POST['remove_id']);
+
+    if ($isRemovingSingleItem) {
         $id = (int) $_POST['remove_id'];
         if ($id > 0) {
             unset($_SESSION['cart'][$id]);
@@ -33,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action'] ?? '';
 
-    if ($action === 'update' && isset($_POST['qty']) && is_array($_POST['qty'])) {
+    if (!$isRemovingSingleItem && $action === 'update' && isset($_POST['qty']) && is_array($_POST['qty'])) {
         foreach ($_POST['qty'] as $productId => $qty) {
             $id = (int) $productId;
             $quantity = (int) $qty;
@@ -66,8 +73,13 @@ if (($_GET['action'] ?? '') === 'add') {
     if ($id > 0) {
         $currentQty = (int) ($_SESSION['cart'][$id] ?? 0);
         $_SESSION['cart'][$id] = min(99, $currentQty + $qty);
-        $cartMessage = 'Đã thêm sản phẩm vào giỏ hàng.';
+        $_SESSION['cart_flash'] = 'Đã thêm sản phẩm vào giỏ hàng.';
     }
+
+    // Redirect to a clean URL so browser refresh does not add the item again.
+    $redirectTarget = (($_GET['buy_now'] ?? '') === '1') ? 'checkout.php' : 'cart.php';
+    header('Location: ' . $redirectTarget);
+    exit;
 }
 
 $cartItems = [];
@@ -148,6 +160,7 @@ ob_start();
             <p>Thêm sản phẩm để bắt đầu đơn hàng của bạn.</p>
             <a href="product.php" class="btn-primary">Tiếp tục mua sắm</a>
         </div>
+
     <?php else: ?>
         <div class="cart-grid">
             <form method="post" class="cart-table-wrap">
