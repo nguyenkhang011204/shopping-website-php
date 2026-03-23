@@ -1,9 +1,9 @@
 <?php
 require_once 'includes/dbconnect.php';
 
-$page_title   = "Trang chủ";
-$page_css     = "assets/css/main.css";
-$base_path    = "";
+$page_title = "Trang chủ";
+$page_css = "assets/css/main.css";
+$base_path = "";
 $page_scripts = ["assets/js/main.js"];
 
 // Fetch newest 8 active products

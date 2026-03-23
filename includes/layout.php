@@ -29,8 +29,7 @@
     <link rel="stylesheet" href="<?= isset($base_path) ? $base_path : '' ?>assets/css/footer.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
@@ -39,7 +38,8 @@
     <?php include_once((isset($base_path) ? $base_path : '') . 'includes/header.php'); ?>
 
     <main class="content">
-        <?php if (isset($page_content)) echo $page_content; ?>
+        <?php if (isset($page_content))
+            echo $page_content; ?>
     </main>
 
     <?php include_once((isset($base_path) ? $base_path : '') . 'includes/footer.php'); ?>
