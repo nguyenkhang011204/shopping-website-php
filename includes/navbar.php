@@ -4,18 +4,18 @@
     <div class="nav-mobile">
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <div class="logo"><img src="assets/images/logo.png" alt=""></div>
-        
+
         <div class="cart">
             <i class="fa fa-user"></i>
             <i class="fa-solid fa-bag-shopping"></i>
         </div>
     </div>
-    
+
 
     <!-- Main Menu -->
     <ul class="nav-links">
 
-        <li><a href="home.php">TRANG CHỦ</a></li>
+        <li><a href="../home.php">TRANG CHỦ</a></li>
 
         <li class="dropdown">
             <a href="pages/product.php">SẢN PHẨM ▾</a>
