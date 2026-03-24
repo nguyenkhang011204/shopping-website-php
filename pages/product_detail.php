@@ -119,81 +119,79 @@ ob_start();
             <p class="sku">SKU: <?= htmlspecialchars($product['sku'] ?? '—') ?></p>
 
             <!-- Price -->
-            <<<<<<< HEAD <p class="price"><?= number_format((float) $product['price'], 0, ',', '.') ?> VNĐ</p>
-                =======
-                <p class="price"><?= number_format((float) $product['price'], 0, ',', '.') ?>đ</p>
-                >>>>>>> 9b9743a ([SW22]: Build cart page (cart.php))
+            <p class="price"><?= number_format((float) $product['price'], 0, ',', '.') ?> VNĐ</p>
 
-                <!-- Stock -->
-                <?php if ($product['stock'] > 0): ?>
-                    <span class="stock-badge in-stock">
-                        <i class="fa-solid fa-circle-check"></i>
-                        Còn hàng &nbsp;·&nbsp; <?= $product['stock'] ?> sản phẩm
-                    </span>
-                <?php else: ?>
-                    <span class="stock-badge out-stock">
-                        <i class="fa-solid fa-circle-xmark"></i> Hết hàng
-                    </span>
-                <?php endif; ?>
 
-                <div class="pd-divider"></div>
+            <!-- Stock -->
+            <?php if ($product['stock'] > 0): ?>
+                <span class="stock-badge in-stock">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Còn hàng &nbsp;·&nbsp; <?= $product['stock'] ?> sản phẩm
+                </span>
+            <?php else: ?>
+                <span class="stock-badge out-stock">
+                    <i class="fa-solid fa-circle-xmark"></i> Hết hàng
+                </span>
+            <?php endif; ?>
 
-                <!-- Sizes as chips -->
-                <?php if (!empty($sizes)): ?>
-                    <label class="field-label">Kích thước</label>
-                    <div class="size-chips">
-                        <?php foreach ($sizes as $i => $s): ?>
-                            <button type="button"
-                                class="size-chip <?= $s['stock'] == 0 ? 'disabled' : ($i === 0 ? 'selected' : '') ?>"
-                                data-size="<?= htmlspecialchars($s['size']) ?>" <?= $s['stock'] == 0 ? 'disabled' : '' ?>>
-                                <?= htmlspecialchars($s['size']) ?>
-                            </button>
-                        <?php endforeach; ?>
-                    </div>
-                    <!-- Hidden select for form submission -->
-                    <select id="sizeSelect">
-                        <?php foreach ($sizes as $s): ?>
-                            <option value="<?= htmlspecialchars($s['size']) ?>">
-                                <?= htmlspecialchars($s['size']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                <?php endif; ?>
+            <div class="pd-divider"></div>
 
-                <!-- Quantity stepper -->
-                <label class="field-label">Số lượng</label>
-                <div class="qty-row">
-                    <button type="button" class="qty-btn" id="qtyMinus">−</button>
-                    <input class="qty-input" id="qtyInput" type="number" value="1" min="1"
-                        max="<?= (int) $product['stock'] ?>">
-                    <button type="button" class="qty-btn" id="qtyPlus">+</button>
+            <!-- Sizes as chips -->
+            <?php if (!empty($sizes)): ?>
+                <label class="field-label">Kích thước</label>
+                <div class="size-chips">
+                    <?php foreach ($sizes as $i => $s): ?>
+                        <button type="button"
+                            class="size-chip <?= $s['stock'] == 0 ? 'disabled' : ($i === 0 ? 'selected' : '') ?>"
+                            data-size="<?= htmlspecialchars($s['size']) ?>" <?= $s['stock'] == 0 ? 'disabled' : '' ?>>
+                            <?= htmlspecialchars($s['size']) ?>
+                        </button>
+                    <?php endforeach; ?>
                 </div>
+                <!-- Hidden select for form submission -->
+                <select id="sizeSelect">
+                    <?php foreach ($sizes as $s): ?>
+                        <option value="<?= htmlspecialchars($s['size']) ?>">
+                            <?= htmlspecialchars($s['size']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
 
-                <!-- Action buttons -->
-                <div class="btn-group">
-                    <button class="add-cart" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
-                        <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
-                    </button>
-                    <button class="buy" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
-                        Đặt hàng ngay
-                    </button>
-                </div>
+            <!-- Quantity stepper -->
+            <label class="field-label">Số lượng</label>
+            <div class="qty-row">
+                <button type="button" class="qty-btn" id="qtyMinus">−</button>
+                <input class="qty-input" id="qtyInput" type="number" value="1" min="1"
+                    max="<?= (int) $product['stock'] ?>">
+                <button type="button" class="qty-btn" id="qtyPlus">+</button>
+            </div>
 
-                <!-- Trust badges -->
-                <div class="trust-badges">
-                    <div class="trust-badge">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>Bảo hành chính hãng</span>
-                    </div>
-                    <div class="trust-badge">
-                        <i class="fa-solid fa-rotate-left"></i>
-                        <span>Đổi trả 30 ngày</span>
-                    </div>
-                    <div class="trust-badge">
-                        <i class="fa-solid fa-truck-fast"></i>
-                        <span>Giao hàng toàn quốc</span>
-                    </div>
+            <!-- Action buttons -->
+            <div class="btn-group">
+                <button class="add-cart" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
+                    <i class="fa-solid fa-bag-shopping"></i> Giỏ hàng
+                </button>
+                <button class="buy" data-id="<?= $product['id'] ?>" <?= $product['stock'] == 0 ? 'disabled' : '' ?>>
+                    Đặt hàng ngay
+                </button>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Bảo hành chính hãng</span>
                 </div>
+                <div class="trust-badge">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Đổi trả 30 ngày</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Giao hàng toàn quốc</span>
+                </div>
+            </div>
 
         </div><!-- /product-info -->
     </div><!-- /product-detail -->
