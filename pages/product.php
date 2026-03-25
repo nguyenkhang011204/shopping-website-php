@@ -136,34 +136,35 @@ ob_start();
                 </a>
             <?php endif; ?>
         </div>
+    </div>
 
-        <div class="page-numbers">
-            <?php
-            $start = max(1, $current_page - 2);
-            $end = min($total_pages, $current_page + 2);
-            if ($start > 1)
-                echo '<a href="' . buildQuery(['page' => 1]) . '">1</a>';
-            if ($start > 2)
-                echo '<span>…</span>';
-            for ($i = $start; $i <= $end; $i++):
-                ?>
-                <a class="<?= $i === $current_page ? 'active' : '' ?>" href="<?= buildQuery(['page' => $i]) ?>"><?= $i ?></a>
-            <?php endfor;
-            if ($end < $total_pages - 1)
-                echo '<span>…</span>';
-            if ($end < $total_pages)
-                echo '<a href="' . buildQuery(['page' => $total_pages]) . '">' . $total_pages . '</a>';
+    <div class="page-numbers">
+        <?php
+        $start = max(1, $current_page - 2);
+        $end = min($total_pages, $current_page + 2);
+        if ($start > 1)
+            echo '<a href="' . buildQuery(['page' => 1]) . '">1</a>';
+        if ($start > 2)
+            echo '<span>…</span>';
+        for ($i = $start; $i <= $end; $i++):
             ?>
-        </div>
+            <a class="<?= $i === $current_page ? 'active' : '' ?>" href="<?= buildQuery(['page' => $i]) ?>"><?= $i ?></a>
+        <?php endfor;
+        if ($end < $total_pages - 1)
+            echo '<span>…</span>';
+        if ($end < $total_pages)
+            echo '<a href="' . buildQuery(['page' => $total_pages]) . '">' . $total_pages . '</a>';
+        ?>
+    </div>
 
-        <div class="next-page">
-            <?php if ($current_page < $total_pages): ?>
-                <a href="<?= buildQuery(['page' => $current_page + 1]) ?>">
-                    <span class="hide-on-phone">TRANG SAU</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            <?php endif; ?>
-        </div>
+    <div class="next-page">
+        <?php if ($current_page < $total_pages): ?>
+            <a href="<?= buildQuery(['page' => $current_page + 1]) ?>">
+                <span class="hide-on-phone">TRANG SAU</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        <?php endif; ?>
+    </div>
     </div>
 <?php endif; ?>
 
