@@ -84,6 +84,7 @@ $paymentStatusLabels = [
     'paid' => ['Đã thanh toán', '#4CAF50'],
     'unpaid' => ['Chưa thanh toán', '#FFA500'],
     'refunded' => ['Đã hoàn tiền', '#9E9E9E'],
+    'cancelled' => ['']
 ];
 
 ob_start();
@@ -128,17 +129,31 @@ ob_start();
                     <div class="order-card">
                         <div class="order-card-header">
                             <div class="order-id-date">
-                                <h3>Mã đơn hàng: <?= (int) $order['id'] ?></h3>
+                                <h3>Mã đơn hàng: #<?= (int) $order['id'] ?></h3>
                                 <p><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></p>
                             </div>
                             <div class="order-badges">
-                                <span class="badge status" style="background-color: <?= $statusLabels[$order['status']][1] ?>">
-                                    <?= $statusLabels[$order['status']][0] ?>
-                                </span>
-                                <span class="badge payment"
-                                    style="background-color: <?= $paymentStatusLabels[$order['payment_status']][1] ?>">
-                                    <?= $paymentStatusLabels[$order['payment_status']][0] ?>
-                                </span>
+                                <?php if ($order['status'] === 'cancelled'): ?>
+                                    <span class="badge status" style="background-color: <?= $statusLabels[$order['status']][1] ?>">
+                                        <?= $statusLabels[$order['status']][0] ?>
+                                    </span>
+                                <?php elseif ($order['status'] === 'pending'): ?>
+                                    <span class="badge status" style="background-color: <?= $statusLabels[$order['status']][1] ?>">
+                                        <?= $statusLabels[$order['status']][0] ?>
+                                    </span>
+                                    <span class="badge payment"
+                                        style="background-color: <?= $paymentStatusLabels[$order['payment_status']][1] ?>">
+                                        <?= $paymentStatusLabels[$order['payment_status']][0] ?>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="badge status" style="background-color: <?= $statusLabels[$order['status']][1] ?>">
+                                        <?= $statusLabels[$order['status']][0] ?>
+                                    </span>
+                                    <span class="badge payment"
+                                        style="background-color: <?= $paymentStatusLabels[$order['payment_status']][1] ?>">
+                                        <?= $paymentStatusLabels[$order['payment_status']][0] ?>
+                                    </span>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -216,13 +231,13 @@ ob_start();
             const formData = new FormData();
             formData.append('order_id', orderId);
 
-            fetch('cancel_order.php', {
+            fetch('cancel_order.php', { //Gửi request POST tới file cancel_order.php để xử lý hủy đơn hàng
                 method: 'POST',
                 body: formData
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
+                    if (data.success) { //
                         alert('Đơn hàng đã hủy thành công');
                         location.reload();
                     } else {
