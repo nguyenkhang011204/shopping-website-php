@@ -31,7 +31,7 @@ $page = $page ?? 'dashboard';
             Danh mục
         </a>
 
-        <a href="index.php?page=orders" class="<?= $page === 'orders' ? 'active' : '' ?>">
+        <a href="index.php?page=manageOrder" class="<?= $page === 'manageOrder' ? 'active' : '' ?>">
             <i class="fa-solid fa-cart-shopping"></i>
             Đơn hàng
         </a>

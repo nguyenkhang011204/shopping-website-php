@@ -1,0 +1,684 @@
+/* =====================================================
+   ADMIN MANAGE ORDERS — uses tokens from base.css
+   ===================================================== */
+@import url("base.css");
+
+/* ── Filter Group & Select ── */
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-select-wrapper {
+  display: inline-block;
+}
+
+.filter-form {
+  display: inline;
+}
+
+.filter-select {
+  padding: 10px 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 180px;
+}
+
+.filter-select:hover {
+  border-color: var(--brand-orange);
+  box-shadow: 0 2px 8px rgba(244, 166, 42, 0.1);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 3px rgba(244, 166, 42, 0.15);
+}
+
+/* ── Table Container ── */
+.table-container {
+  background: var(--admin-surface);
+  border-radius: var(--admin-radius);
+  padding: 18px;
+  box-shadow: var(--admin-shadow);
+  border: 1px solid var(--admin-border);
+  overflow-x: auto;
+}
+
+/* ── Orders Table ── */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.orders-table thead {
+  background: #fafbfc;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.orders-table th {
+  padding: 14px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--admin-muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.orders-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: middle;
+}
+
+.orders-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ── Column Styling ── */
+.order-id {
+  font-weight: 600;
+  width: 90px;
+}
+
+.link-id {
+  color: var(--brand-orange);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.link-id:hover {
+  color: var(--brand-dark);
+  text-decoration: underline;
+}
+
+.customer-name {
+  min-width: 180px;
+}
+
+.customer-name strong {
+  display: block;
+  color: var(--admin-text);
+  font-weight: 600;
+}
+
+.customer-name .text-muted {
+  color: var(--admin-muted);
+  font-size: 12px;
+  display: block;
+  margin-top: 2px;
+}
+
+.customer-phone {
+  width: 110px;
+  font-size: 13px;
+  color: var(--admin-text);
+}
+
+.order-total {
+  width: 130px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--admin-text);
+}
+
+.order-total strong {
+  display: block;
+  font-size: 15px;
+}
+
+.item-count {
+  display: block;
+  font-size: 12px;
+  color: var(--admin-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* ── Status Select ── */
+.order-status,
+.payment-status {
+  width: 140px;
+}
+
+.status-select,
+.payment-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-select:hover,
+.payment-select:hover {
+  border-color: var(--brand-orange);
+}
+
+.status-select:focus,
+.payment-select:focus {
+  outline: none;
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 2px rgba(244, 166, 42, 0.15);
+}
+
+.status-form,
+.payment-form {
+  margin: 0;
+}
+
+/* ── Payment Method Badge ── */
+.payment-method {
+  width: 110px;
+}
+
+.method-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--admin-text);
+  white-space: nowrap;
+}
+
+/* ── Order Date ── */
+.order-date {
+  width: 110px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.date {
+  display: block;
+  font-weight: 600;
+  color: var(--admin-text);
+  font-size: 13px;
+}
+
+.time {
+  display: block;
+  font-size: 12px;
+  color: var(--admin-muted);
+  margin-top: 2px;
+}
+
+/* ── Order Actions ── */
+.order-actions {
+  width: 60px;
+  text-align: center;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: var(--admin-text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-icon:hover {
+  background: var(--brand-orange);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ── Status & Payment Badges ── */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.badge.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge.blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge.orange {
+  background: rgba(244, 166, 42, 0.15);
+  color: var(--brand-orange);
+}
+
+.badge.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge.danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ── Empty State ── */
+.empty-state {
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.empty-state i {
+  font-size: 64px;
+  color: var(--admin-border);
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--admin-text);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--admin-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 1200px) {
+  .orders-table {
+    font-size: 13px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 12px 10px;
+  }
+
+  .customer-name {
+    min-width: 150px;
+  }
+
+  .order-total {
+    width: 120px;
+  }
+
+  .order-status,
+  .payment-status {
+    width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .orders-table {
+    font-size: 12px;
+    min-width: 900px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 10px 8px;
+  }
+
+  .order-id {
+    width: 70px;
+  }
+
+  .customer-phone {
+    display: none;
+  }
+
+  .customer-name {
+    min-width: 140px;
+  }
+
+  .order-total {
+    width: 100px;
+    font-size: 13px;
+  }
+
+  .order-status,
+  .payment-status {
+    width: 100px;
+  }
+
+  .status-select,
+  .payment-select {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  .payment-method {
+    display: none;
+  }
+
+  .order-date {
+    width: 90px;
+  }
+
+  .filter-select {
+    min-width: 140px;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .page-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .toolbar-search {
+    width: 100%;
+  }
+
+  .toolbar-search input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container {
+    padding: 12px;
+  }
+
+  .orders-table {
+    font-size: 11px;
+    min-width: 1000px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 8px 6px;
+  }
+
+  .order-id {
+    width: 60px;
+    font-size: 12px;
+  }
+
+  .customer-name {
+    min-width: 120px;
+  }
+
+  .customer-name strong {
+    font-size: 12px;
+  }
+
+  .customer-name .text-muted {
+    font-size: 11px;
+  }
+
+  .order-total {
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .order-total strong {
+    font-size: 13px;
+  }
+
+  .item-count {
+    font-size: 11px;
+  }
+
+  .order-status,
+  .payment-status {
+    width: 85px;
+  }
+
+  .status-select,
+  .payment-select {
+    font-size: 10px;
+    padding: 5px 6px;
+  }
+
+  .order-date {
+    width: 80px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 11px;
+  }
+
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .badge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .method-badge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .empty-state {
+    padding: 40px 20px;
+  }
+
+  .empty-state i {
+    font-size: 48px;
+  }
+
+  .empty-state h3 {
+    font-size: 16px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+  }
+
+  .filter-select {
+    min-width: 120px;
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  .toolbar-search {
+    font-size: 12px;
+  }
+
+  .toolbar-search input {
+    font-size: 12px;
+  }
+}
+
+/* ── Page Toolbar (inherited from dashboard) ── */
+.page-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--admin-surface);
+  padding: 16px;
+  border-radius: var(--admin-radius);
+  border: 1px solid var(--admin-border);
+  box-shadow: var(--admin-shadow);
+}
+
+.toolbar-search {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: #f9fafb;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.toolbar-search:focus-within {
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 3px rgba(244, 166, 42, 0.1);
+}
+
+.toolbar-search i {
+  color: var(--admin-muted);
+  font-size: 14px;
+}
+
+.toolbar-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--admin-text);
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.toolbar-search input::placeholder {
+  color: var(--admin-muted);
+}
+
+.toolbar-search input:focus {
+  outline: none;
+}
+
+.toolbar-search button {
+  padding: 8px 16px;
+  background: var(--brand-orange);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbar-search button:hover {
+  background: var(--brand-dark);
+  transform: translateY(-2px);
+}
+
+/* ── Button Styles ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--brand-orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--brand-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 166, 42, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--admin-text);
+  border: 1px solid var(--admin-border);
+  padding: 8px 16px;
+}
+
+.btn-outline:hover {
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
+  background: transparent;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ── Message Banners ── */
+.msg-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--admin-radius);
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-banner.success {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.msg-banner.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.msg-banner i {
+  font-size: 16px;
+}
