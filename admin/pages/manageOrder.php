@@ -4,6 +4,31 @@ if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+function confirmOrderAndReduceStock(PDO $pdo, int $order_id): void
+{
+    $itemsStmt = $pdo->prepare(
+        "SELECT oi.product_id, oi.quantity, p.stock
+         FROM order_items oi
+         JOIN products p ON p.id = oi.product_id
+         WHERE oi.order_id = ?
+         FOR UPDATE"
+    );
+    $itemsStmt->execute([$order_id]);
+    $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $updateStockStmt = $pdo->prepare("UPDATE products SET stock = stock - ? WHERE id = ?");
+
+    foreach ($items as $item) {
+        if ((int) $item['stock'] < (int) $item['quantity']) {
+            throw new RuntimeException('insufficient_stock');
+        }
+    }
+
+    foreach ($items as $item) {
+        $updateStockStmt->execute([(int) $item['quantity'], (int) $item['product_id']]);
+    }
+}
+
 // ── POST: Update order status ────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
@@ -17,8 +42,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $valid_statuses = ['pending', 'confirmed', 'shipping', 'delivered', 'cancelled'];
             if ($order_id > 0 && in_array($status, $valid_statuses)) {
-                $pdo->prepare("UPDATE orders SET status = ? WHERE id = ?")->execute([$status, $order_id]);
-                $msg = 'updated';
+                try {
+                    $pdo->beginTransaction();
+
+                    $currentStatusStmt = $pdo->prepare("SELECT status FROM orders WHERE id = ? FOR UPDATE");
+                    $currentStatusStmt->execute([$order_id]);
+                    $currentStatus = $currentStatusStmt->fetchColumn();
+
+                    if ($currentStatus === false) {
+                        throw new RuntimeException('error');
+                    }
+
+                    if ($currentStatus !== 'confirmed' && $status === 'confirmed') {
+                        confirmOrderAndReduceStock($pdo, $order_id);
+                    }
+
+                    $pdo->prepare("UPDATE orders SET status = ? WHERE id = ?")->execute([$status, $order_id]);
+                    $pdo->commit();
+                    $msg = 'updated';
+                } catch (Throwable $e) {
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                    }
+                    $msg = ($e->getMessage() === 'insufficient_stock') ? 'insufficient_stock' : 'error';
+                }
             }
         }
 
@@ -108,6 +155,7 @@ $orders = $stmt->fetchAll();
 $flash_map = [
     'updated' => ['success', 'Cập nhật trạng thái đơn hàng thành công.'],
     'pay_updated' => ['success', 'Cập nhật trạng thái thanh toán thành công.'],
+    'insufficient_stock' => ['error', 'Không đủ tồn kho để xác nhận đơn hàng.'],
     'error' => ['error', 'Có lỗi xảy ra. Vui lòng thử lại.'],
     'csrf' => ['error', 'Yêu cầu không hợp lệ.'],
 ];
