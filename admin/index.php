@@ -35,11 +35,18 @@ $routes = [
         'css' => 'assets/css/dashboard.css',
         'text' => 'Sản phẩm'
     ],
-    'orders' => [
-        'title' => 'Đơn hàng - admin',
-        'file' => 'pages/order.php',
-        'css' => 'assets/css/dashboard.css',
+
+    'manageOrder' => [
+        'title' => 'Quản lý đơn hàng - admin',
+        'file' => 'pages/manageOrder.php',
+        'css' => 'assets/css/manageOrder.css',
         'text' => 'Quản lý đơn hàng'
+    ],
+    'order-detail' => [
+        'title' => 'Chi tiết đơn hàng - admin',
+        'file' => 'pages/order-detail.php',
+        'css' => 'assets/css/orderDetail.css',
+        'text' => 'Chi tiết đơn hàng'
     ],
     'clients' => [
         'title' => 'Khách hàng - admin',
